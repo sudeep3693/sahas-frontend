@@ -1,0 +1,89 @@
+.details-bg {
+  background: linear-gradient(
+    to right,
+    #E6F4EA 0%,
+    #F5F5F5 50%,
+    #E6F4EA 100%
+  );
+  color: #001F3F;
+  padding: 2rem;
+}
+
+.hover-title {
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: #002B5B;
+  font-weight: 600;
+}
+
+.hover-title:hover {
+  transform: scale(1.05);
+  color: #FFA500;
+}
+
+/* Watermark in product unit */
+.product-unit {
+  position: relative;
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.watermark-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: auto;
+  max-width: 350px;
+  max-height: 350px;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.20;
+}
+
+.selected-topic {
+  color: #28A745; 
+  font-weight: bold;
+}
+
+.watermark-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Ensure text stays above watermark */
+.product-unit h5,
+.product-unit p {
+  position: relative;
+  z-index: 1;
+}
+
+/* ⬇️ Mobile-specific adjustments */
+@media (max-width: 767px) {
+  .details-bg {
+     padding: 0.4rem !important;
+  }
+
+  .product-unit {
+    padding: 0.75rem;
+  }
+
+  .product-unit h5 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .product-unit p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .hover-title {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,10 @@
+/* body {
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  .aos-animate[data-aos="fade-left"],
+  .aos-animate[data-aos="fade-right"] {
+    transform: none !important;
+  }
+} */

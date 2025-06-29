@@ -1,0 +1,41 @@
+/* components/Css/IndividualMember.css */
+
+.member-card {
+  width: 180px;
+  margin: 10px;
+  text-align: center;
+  background: #E6F4EA; /* Soft Green BG */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #F5F5F5; /* Light Gray border */
+}
+
+.member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3); /* Green accent shadow */
+}
+
+.member-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 2px solid #28A745; /* Primary Green border */
+}
+
+.member-info {
+  padding: 10px;
+}
+
+.member-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #002B5B; /* Navy Blue for header text */
+  margin-bottom: 4px;
+}
+
+.member-position {
+  font-size: 0.95rem;
+  color: #001F3F; /* Deep Navy for secondary text */
+}

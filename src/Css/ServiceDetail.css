@@ -1,0 +1,49 @@
+/* ServiceDetail.css */
+
+.service-detail-container {
+  width: 400px; /* Fixed width for consistent size */
+  max-width: 100%;
+  margin: 0.5rem auto;
+  cursor: pointer;
+}
+
+.service-card {
+  background-color: #28A745; /* Dark Navy background */
+  border: 1px solid #F5F5F5; /* Light Gray border */
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow for dark bg */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #FFFFFF; /* Ensure text is white by default */
+}
+
+.service-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.service-image {
+  border-radius: 0.5rem;
+  width: 40%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-image {
+  transform: scale(1.05);
+}
+
+.service-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #FFFFFF; /* White text on dark background */
+  margin: 0;
+}

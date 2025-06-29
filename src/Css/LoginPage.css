@@ -1,0 +1,146 @@
+/* Full screen with background image */
+.login-page {
+  min-height: 100vh;
+  background-image: url('https://source.unsplash.com/1600x900/?office,technology');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+/* Semi-transparent overlay */
+.overlay {
+  background-color: rgba(230, 244, 234, 0.85); /* Soft Green BG with opacity */
+  padding: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 4px 15px rgba(0, 31, 63, 0.25); /* Deep Navy shadow */
+}
+
+/* Login box */
+.login-box {
+  background: #F5F5F5; /* Light Gray background */
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 31, 63, 0.2); /* Deep Navy shadow */
+  color: #001F3F; /* Deep Navy text */
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 1.8rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #002B5B; /* Navy Blue */
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #001F3F; /* Deep Navy */
+}
+
+input[type='email'],
+input[type='password'],
+input[type='text'] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #F5F5F5; /* Light Gray border */
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s ease;
+  margin-bottom: 0.2rem;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+  background-color: #fff;
+  color: #001F3F; /* Deep Navy text */
+}
+
+input:focus {
+  border-color: #28A745; /* Primary Green on focus */
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-input {
+  padding-right: 45px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  border: none;
+  color: #28A745; /* Primary Green */
+  font-size: 1.1rem;
+  cursor: pointer;
+  z-index: 5;
+  padding-left: 5px;
+  transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+  color: #22863a; /* Darker green on hover */
+}
+
+.forgot-password {
+  display: block;
+  text-align: right;
+  margin-top: 6px;
+}
+
+.forgot-password a {
+  color: #FFA500; /* Accent Light Orange */
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #28A745; /* Primary Green */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #1e7e34; /* Darker Green */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 576px) {
+  .login-box {
+    padding: 1.5rem;
+  }
+
+  .login-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* Hide default password reveal icons in Edge and Safari */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-webkit-credentials-auto-fill-button {
+  display: none;
+  visibility: hidden;
+}

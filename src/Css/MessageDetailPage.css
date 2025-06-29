@@ -1,0 +1,42 @@
+.message-detail-bg {
+  background-color: #F4F9F4;
+}
+
+.message-oath-box {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid #F0F0F0;
+  border-radius: 0.5rem;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* ✅ Watermark background */
+.message-oath-box::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: auto;
+  aspect-ratio: 1/1;
+  background-image: url('../Images/logoOnly.png');
+  background-repeat: repeat-y;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.15;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ✅ Text stays readable on top */
+.message-oath-box p {
+  position: relative;
+  z-index: 1;
+  text-align: justify;
+  color: #333;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  white-space: pre-line;
+}

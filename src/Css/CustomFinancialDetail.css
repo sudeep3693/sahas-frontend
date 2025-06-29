@@ -1,0 +1,26 @@
+/* Prevent entire page horizontal scroll */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Make info cards responsive */
+.info-card {
+  min-height: 150px;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+/* Ensure content inside card never overflows */
+.info-card * {
+  max-width: 100%;
+  word-break: break-word;
+}
+
+/* Optional: scale down icons on small devices */
+@media (max-width: 576px) {
+  .info-card svg {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}

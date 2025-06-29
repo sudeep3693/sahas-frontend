@@ -1,0 +1,19 @@
+/* Smooth scrolling already present */
+.overflow-auto {
+  scroll-behavior: smooth;
+}
+
+.horizontal-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Optional styling for cards if using classes */
+.product-card {
+  transition: transform 0.3s;
+}
+.product-card:hover {
+  transform: scale(1.02);
+  border-color: #28A745; /* Green highlight on hover */
+}

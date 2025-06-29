@@ -1,0 +1,35 @@
+
+/* CarouselAndService.css */
+.vision-box {
+  background: linear-gradient(135deg, #e6f4ea, #f5f5f5);
+  color: #001f3f;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Responsive Hide on Medium */
+@media (min-width: 750px) and (max-width: 1150px) {
+  .hide-on-medium {
+    display: none !important;
+  }
+}
+
+/* Ensure height consistency */
+@media (min-width: 768px) {
+  .row.align-items-stretch > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .shadow {
+    flex: 1 1 auto;
+  }
+}
+
+/* Hover effect */
+.service-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 43, 91, 0.3);
+}

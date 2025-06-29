@@ -1,0 +1,68 @@
+.contact-section {
+  background-color: #E6F4EA; /* Soft Green BG */
+  padding: 2rem;
+}
+
+.contact-section input,
+.contact-section textarea {
+  border-radius: 0;
+  border: 1px solid #F5F5F5;
+  box-shadow: none;
+  transition: border-color 0.2s ease;
+  color: #001F3F;
+  background-color: white;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-family: inherit;
+  width: 100%;
+}
+
+.contact-section input::placeholder,
+.contact-section textarea::placeholder {
+  color: #002B5B;
+  opacity: 0.7;
+}
+
+.contact-section input:focus,
+.contact-section textarea:focus {
+  border-color: #28A745;
+  outline: none;
+  box-shadow: 0 0 6px #28A745aa;
+  background-color: #fff;
+}
+
+.contact-section button {
+  border-radius: 3px;
+  letter-spacing: 1px;
+  background-color: #28A745;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-section button:hover,
+.contact-section button:focus {
+  background-color: #006400;
+  outline: none;
+}
+
+/* 🔽 Mobile / Small Screen Adjustments */
+@media (max-width: 767px) {
+  .contact-section {
+    padding: 1rem;
+  }
+
+  .contact-section input,
+  .contact-section textarea {
+    font-size: 0.95rem;
+    padding: 0.45rem;
+  }
+
+  .contact-section button {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+  }
+}
