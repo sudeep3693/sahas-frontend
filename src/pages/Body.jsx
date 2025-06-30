@@ -13,9 +13,14 @@ function Body({ productsRef, contactRef }) {
   const [showPopup, setShowPopup] = useState(false);
   const location = useLocation();
 
-  useEffect(() => {
+useEffect(() => {
+  const hasVisited = localStorage.getItem('hasVisited');
+
+  if (!hasVisited) {
     setShowPopup(true);
-  }, []);
+    localStorage.setItem('hasVisited', 'true');
+  }
+}, []);
 
 
  useEffect(() => {

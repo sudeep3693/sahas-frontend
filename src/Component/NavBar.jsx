@@ -133,7 +133,12 @@ function NavBar({ onProductsClick, onContactClick }) {
 
             <Offcanvas.Body>
               <Nav className="me-lg-5 ms-auto custom-nav">
-                <NavDropdown title="About Us" id="about-dropdown" className="custom-nav-link">
+                <NavDropdown
+                  title="About Us"
+                  id="about-dropdown"
+                  className="custom-nav-link about-dropdown-mobile"
+                >
+
                   <NavDropdown.Item onClick={about} className="custom-dropdown-item">Introduction</NavDropdown.Item>
                   <NavDropdown.Item onClick={teamDetail} className="custom-dropdown-item">Our Team</NavDropdown.Item>
                 </NavDropdown>
