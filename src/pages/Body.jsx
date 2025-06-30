@@ -14,11 +14,11 @@ function Body({ productsRef, contactRef }) {
   const location = useLocation();
 
 useEffect(() => {
-  const hasVisited = localStorage.getItem('hasVisited');
+  const hasSeenNotice = sessionStorage.getItem("hasSeenNotice");
 
-  if (!hasVisited) {
-    setShowPopup(true);
-    localStorage.setItem('hasVisited', 'true');
+  if (!hasSeenNotice) {
+    setShowPopup(true); // Show your notice popup
+    sessionStorage.setItem("hasSeenNotice", "true"); // Mark it shown for this session
   }
 }, []);
 

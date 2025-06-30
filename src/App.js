@@ -10,6 +10,11 @@ function App() {
 
   if (loading) return <div>Loading...</div>; // Prevent premature route rendering
 
+  window.addEventListener("beforeunload", () => {
+  sessionStorage.removeItem("hasSeenNotice");
+});
+
+
   return (
     <Router>
       <UserRoutes />

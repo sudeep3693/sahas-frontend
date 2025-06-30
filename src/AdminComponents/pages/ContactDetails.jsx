@@ -22,7 +22,7 @@ function ContactDetails() {
 useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:3001/api/getBasicDetails");
+        const res = await axios.get(`${config.baseUrl}/api/getBasicDetails`);
         const data = res.data[0]; 
         setFormData(data);
          } 

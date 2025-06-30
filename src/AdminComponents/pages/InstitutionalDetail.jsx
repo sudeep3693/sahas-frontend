@@ -2,6 +2,7 @@ import { useState,useEffect } from "react";
 import { Container, Form, Button, Card } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import config from "../../Constants/config";
 
 function InstitutionalDetail() {
 
@@ -19,7 +20,7 @@ function InstitutionalDetail() {
 useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:3001/financial/getAll");
+        const res = await axios.get(`${config.baseUrl}/financial/getAll`);
         const data = res.data[0]; 
         setFormData(data);
          } 
@@ -41,7 +42,7 @@ useEffect(() => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3001/financial/add", formData);
+      const res = await axios.post(`${config.baseUrl}/financial/add`, formData);
       if (res.status === 200 || res.status === 201) {
         alert("Institutional data submitted successfully!");
          navigate(`/admin`);
