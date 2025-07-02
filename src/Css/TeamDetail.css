@@ -2,6 +2,35 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 20px;
-  gap: 20px;
+  gap: 12px;
+  padding: 10px;
+}
+
+/* Flexible wrapper to allow 2 or more per row */
+.individual-member {
+  flex: 1 1 160px; /* Allows as many as possible depending on screen width */
+  max-width: 220px; /* Optional: Prevents cards from getting too wide */
+  min-width: 140px; /* Ensures minimum readable size */
+}
+
+/* Responsive tweaks for smaller screens */
+@media (max-width: 768px) {
+  .team-container {
+    gap: 10px;
+    padding: 8px;
+  }
+
+  .individual-member {
+    flex: 1 1 45%;
+    max-width: 48%;
+    min-width: 140px;
+  }
+}
+
+/* Optional: For very narrow devices, fallback to full width */
+@media (max-width: 350px) {
+  .individual-member {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
 }

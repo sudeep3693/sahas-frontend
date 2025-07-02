@@ -30,7 +30,7 @@ function About() {
         <h3 className="fw-bold mb-3" style={{ color: '#001F3F' }} data-aos = 'fade-left'>
           {cooperative.topic}
         </h3>
-        <p className="text-muted" style={{ fontSize: '1rem', lineHeight: '1.7', color: '#28A745' }} data-aos = 'fade-up'>
+        <p className="text-muted" style={{ fontSize: '1rem', lineHeight: '1.7', color: '#28A745', textAlign:'justify' }} data-aos = 'fade-up'>
           {shortDetail}
         </p>
         <button

@@ -9,6 +9,7 @@ html, body {
   min-height: 150px;
   max-width: 100%;
   overflow-wrap: break-word;
+  padding: 1rem; /* Default padding */
 }
 
 /* Ensure content inside card never overflows */
@@ -17,10 +18,43 @@ html, body {
   word-break: break-word;
 }
 
-/* Optional: scale down icons on small devices */
+/* Scale down for small screens */
 @media (max-width: 576px) {
+  .info-card {
+    padding: 0.5rem !important;
+    min-height: 120px;
+  }
+
   .info-card svg {
-    width: 40px !important;
-    height: 40px !important;
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .info-card .fw-bold.fs-5 {
+    font-size: 1rem !important; /* Count text */
+  }
+
+  .info-card .fs-6 {
+    font-size: 0.85rem !important; /* Label text */
+  }
+
+  .py-5 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .px-xs-1,
+  .px-sm-1,
+  .px-3 {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  h2.fw-bold {
+    font-size: 1.25rem !important;
+  }
+
+  .text-muted.fs-6 {
+    font-size: 0.8rem !important;
   }
 }

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate ,useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import '../Css/SecondaryNavBar.css'; // we'll define custom styles here
 const SecondaryNavBar = ({ onProductsClick, onContactClick }) => {
 
   const navigate = useNavigate();
-   const location = useLocation();
+  const location = useLocation();
   const [show, setShow] = useState(false);
 
 
   const handleProductsClick = (e) => {
     e.preventDefault();
-   
+
 
     if (location.pathname === '/') {
       setTimeout(() => {
@@ -22,7 +22,7 @@ const SecondaryNavBar = ({ onProductsClick, onContactClick }) => {
   };
   const handleContactClick = (e) => {
     e.preventDefault();
-   
+
 
     if (location.pathname === '/') {
       setTimeout(() => {
@@ -57,6 +57,8 @@ const SecondaryNavBar = ({ onProductsClick, onContactClick }) => {
         <div className="secondary-navbar">
           <nav className="nav-links">
             <Link to="/">Home</Link>
+            <Link to="/aboutDetail">About Us</Link>
+
             <Link
               onClick={handleProductsClick}
             >
@@ -65,11 +67,12 @@ const SecondaryNavBar = ({ onProductsClick, onContactClick }) => {
             <Link
               onClick={handleContactClick}
             >
-             Contact Us
+              Contact Us
             </Link>
+            <Link to="/team">Our Team</Link>
             <Link to="/downloads">Downloads</Link>
             <Link to="/reports">Reports</Link>
-             <Link to="/gallery">Gallery</Link>
+            <Link to="/gallery">Gallery</Link>
           </nav>
         </div>
       )}

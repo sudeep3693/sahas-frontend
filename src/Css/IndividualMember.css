@@ -1,16 +1,18 @@
 /* components/Css/IndividualMember.css */
 
 .member-card {
-  width: 180px;
-  margin: 10px;
+  width: 100%;
+  max-width: 200px;
   text-align: center;
-  background: #E6F4EA; /* Soft Green BG */
+  background: #E6F4EA;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
-  border: 1px solid #F5F5F5; /* Light Gray border */
+  border: 1px solid #F5F5F5;
+  padding-bottom: 10px; /* Optional for balance */
 }
+
 
 .member-card:hover {
   transform: translateY(-5px);
@@ -38,4 +40,33 @@
 .member-position {
   font-size: 0.95rem;
   color: #001F3F; /* Deep Navy for secondary text */
+}
+/* Responsive wrapper to control card width */
+.individual-member {
+  flex: 1 1 calc(50% - 12px); /* Minimum 2 per row on all screens */
+  max-width: calc(50% - 12px);
+}
+
+/* On medium screens, allow 3 per row */
+@media (min-width: 768px) {
+  .individual-member {
+    flex: 1 1 calc(33.333% - 12px);
+    max-width: calc(33.333% - 12px);
+  }
+}
+
+/* On large screens, allow 4+ per row */
+@media (min-width: 992px) {
+  .individual-member {
+    flex: 1 1 calc(25% - 12px);
+    max-width: calc(25% - 12px);
+  }
+}
+
+/* On extra-large screens */
+@media (min-width: 1200px) {
+  .individual-member {
+    flex: 1 1 calc(20% - 12px);
+    max-width: calc(20% - 12px);
+  }
 }

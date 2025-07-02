@@ -13,11 +13,12 @@ const TeamDetail = () => {
   const [refreshKey, setRefreshKey] = useState(0);
 
   const categories = [
-    { label: 'Board of Directors', value: 'board-of-directors' },
-    { label: 'Workers', value: 'workers' },
-    { label: 'Account Team', value: 'account-team' },
-    { label: 'Management', value: 'management' },
-    { label: 'Support Staff', value: 'support-staff' }
+    { label: 'Board of Directors (संचालक समिति)', value: 'board-of-directors' },
+    {label: 'Risk Management Committee (बिपद् व्यवस्थापन उप-समिति)', value: 'risk-management-committee'},
+    { label: 'Loan Sub-Committee (ऋण उप-समिति)', value: 'loan-committee' },
+    { label: 'Education Sub-Committee (शिक्षा उप-समिति)', value: 'education-committee' },
+    { label: 'Advisory Committee (सल्लाहकार समिति)', value: 'advisory-committee' },
+    { label: 'Employees (कर्मचारी)', value: 'employees' }
   ];
 
   const handleChange = (index, e) => {

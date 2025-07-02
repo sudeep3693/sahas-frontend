@@ -54,9 +54,9 @@ function MembersDetail() {
   }, []);
 
   return (
-    <div className="py-5 px-xs-1 px-sm-1 px-3" style={{ backgroundColor: '#f8f9fa', overflow:'hidden' }}>
+    <div className="py-5 px-xs-1 px-sm-1" style={{ backgroundColor: '#f8f9fa', overflow:'hidden' }}>
       <Container fluid>
-        <Row className="mb-1 align-items-center justify-content-between px-2">
+        <Row className="mb-1 align-items-center justify-content-between">
           <Col xs={12} md="auto" className="text-center mx-auto">
             <h2 className="fw-bold pb-2 d-inline-block" style={{color:"#001F3F"}} data-aos = 'fade-left'>
               -Institutional Profile-
@@ -67,7 +67,7 @@ function MembersDetail() {
 
         <Row className="justify-content-center g-2" ref={ref}>
           {financialData.map((item, idx) => (
-            <Col key={idx} xs={6} sm={6} md={4} lg={2} className="text-center p-3">
+            <Col key={idx} xs={6} sm={6} md={4} lg={2} className="text-center px-2 py-3">
               <div
                 className="p-3 rounded-4 shadow-sm bg-white h-100 d-flex flex-column justify-content-center info-card align-items-center border border-2"
                 style={{ borderColor: '#0d6efd', transition: 'transform 0.3s ease-in-out' }}
