@@ -77,7 +77,7 @@ function MembersDetail() {
                 <div className="fw-bold fs-5 text-wrap-break" style={{ color }}>
                   {inView ? <CountUp end={item.count} duration={2} /> : 0}+
                 </div>
-                <div className="fs-6 fw-light text-secondary">{item.label}</div>
+                <div className="fs-6 fw-bold text-secondary">{item.label}</div>
               </div>
             </Col>
           ))}
