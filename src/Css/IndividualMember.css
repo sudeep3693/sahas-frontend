@@ -2,7 +2,8 @@
 
 .member-card {
   width: 100%;
-  max-width: 200px;
+  max-width: 250px;
+  min-height: 300px;
   text-align: center;
   background: #E6F4EA;
   border-radius: 12px;
@@ -32,14 +33,15 @@
 
 .member-name {
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1 rem;
   color: #002B5B; /* Navy Blue for header text */
   margin-bottom: 4px;
 }
 
 .member-position {
   font-size: 0.95rem;
-  color: #001F3F; /* Deep Navy for secondary text */
+  font-weight: 800;
+  color: #00152b; /* Deep Navy for secondary text */
 }
 /* Responsive wrapper to control card width */
 .individual-member {

@@ -1,24 +1,27 @@
 .details-card {
   width: 100%;
   max-width: 280px;
-  margin: auto;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin: 20px auto;
   padding: 16px;
-  background-color: #F5F5F5; /* Neutral Light Gray background */
-  border-radius: 8px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  background-color: #F5F5F5;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.2s ease-in-out;
-  color: #001F3F; /* Deep Navy text */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #001F3F;
+  overflow: hidden; /* 🔑 Prevent overflow */
+}
+
+.details-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .details-image {
-  width: auto;
-  max-height: 150px;
-  height: auto;
+  width: 100%;               /* 🔑 Full width */
+  height: 150px;             /* Fixed height for consistency */
   object-fit: cover;
   border-radius: 8px;
 }
@@ -32,27 +35,30 @@
 .details-title {
   font-weight: 700;
   margin-bottom: 0.5rem;
-  color: #002B5B; /* Navy Blue for headers */
+  color: #002B5B;
+  font-size: 1.1rem;
 }
 
 .details-description {
   font-size: 0.9rem;
   text-align: justify;
-  color: #555; /* Slightly muted dark text */
+  color: #555;
   margin-bottom: 1rem;
+  line-height: 1.4;
 }
 
 .details-btn {
-  background: linear-gradient(90deg, #28A745 0%, #218838 100%); /* Primary Green gradient */
+  background: linear-gradient(90deg, #28A745 0%, #218838 100%);
   color: white;
   border-radius: 0.5rem;
   border: none;
   padding: 0.5rem 1.5rem;
   font-weight: 600;
   box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   cursor: pointer;
   outline: none;
+  display: inline-block;
 }
 
 .details-btn:hover {

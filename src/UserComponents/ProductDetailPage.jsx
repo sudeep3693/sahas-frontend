@@ -13,12 +13,12 @@ function DetailsPage() {
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-    useEffect(() => {
-      AOS.init({
-        duration: 1000,  // animation duration in ms
-      });
-    }, []);
-  
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,  // animation duration in ms
+    });
+  }, []);
+
   // Create an array of refs, one for each topic
   const topicRefs = useRef([]);
 
@@ -41,16 +41,19 @@ function DetailsPage() {
         {/* Left Column - Topics */}
         <Col xs={12} md={4}>
           <div className="p-3 rounded shadow-sm bg-dark-subtle">
-            <h4 className="text-info mb-3">Topics</h4>
+            <h4 className="text-info mb-3" data-aos="fade-right">Topics</h4>
             {product.Topics.map((item, i) => (
               <div
                 key={i}
-                className={`hover-title mb-3 border-bottom pb-2 ${
-                  selectedIndex === i ? 'selected-topic' : ''
-                }`}
-                style={{ cursor: 'pointer' }}
+                className={`hover-title mb-3 border-bottom pb-2 ${selectedIndex === i ? 'selected-topic' : ''
+                  }`}
+                style={{
+                  cursor: 'pointer',
+                  border: selectedIndex === i ? '2px solid #28A745' : '2px solid transparent',  // 🔑 No layout shift
+                  borderRadius: '6px',
+                  padding: '8px 12px'
+                }}
                 onClick={() => handleTopicClick(i)}
-                data-aos = 'fade-right'
               >
                 <h6 className="m-0">{item.innerTitle}</h6>
               </div>
@@ -58,12 +61,13 @@ function DetailsPage() {
           </div>
         </Col>
 
+
         {/* Right Column - All Topics with refs */}
         <Col xs={12} md={8} style={{ maxHeight: '80vh', overflowY: 'auto' }}>
           <Card className="bg-light text-dark shadow position-relative">
             <Card.Body>
-              <h2 className="mb-3" style={{color:'#001F3F'}} data-aos = 'fade-right'>{product.productSubTitle}</h2>
-              <p className="mb-4" style={{ textAlign: 'justify' }} data-aos = 'fade-up'>
+              <h2 className="mb-3" style={{ color: '#001F3F' }} data-aos='fade-right'>{product.productSubTitle}</h2>
+              <p className="mb-4" style={{ textAlign: 'justify' }} data-aos='fade-up'>
                 {product.productDescription}
               </p>
 
@@ -88,7 +92,7 @@ function DetailsPage() {
                   <div
                     className="d-flex d-md-none flex-column align-items-center mb-3"
                     style={{ textAlign: 'justify' }}
-                    
+
                   >
                     <img
                       src={item.productInnerImage}
