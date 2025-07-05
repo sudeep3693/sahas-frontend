@@ -49,7 +49,7 @@ function NewsGallery() {
                             </Button>
                             <Card.Img
                                 variant="top"
-                                src={`${config.baseUrl}/uploads/news/${item.imageName}`}
+                                src={`${item.imageName}`}
                                 alt={item.heading}
                                 style={{ height: "200px", objectFit: "cover" }}
                             />

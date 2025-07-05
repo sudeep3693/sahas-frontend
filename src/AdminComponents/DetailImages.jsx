@@ -50,7 +50,7 @@ const AllImages = ({ usedIn, getLink, postLink, displayHeader }) => {
                             </Button>
                             <Card.Img
                                 variant="top"
-                                src={`${getLink}/${filename}`}
+                                src={`${filename}`}
                                 style={{ height: '250px', objectFit: 'cover' }}
                             />
                             <Card.Body>

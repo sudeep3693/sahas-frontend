@@ -54,7 +54,7 @@ function MessageDetailPage() {
           <Col sm={12} md={4}>
             <MessageBox
               position={message.position}
-              image={`${config.baseUrl}/uploads/messages/${message.imageName}`}
+              image={message.imageName}
               descriptionList={[
                 `Name: ${message.name}`,
                 `Email: ${message.email}`,

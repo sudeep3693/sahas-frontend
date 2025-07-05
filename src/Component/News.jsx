@@ -44,7 +44,7 @@ function News({ imageName, heading, date, description, id }) {
       onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
     >
       <img
-        src={`${config.baseUrl}/uploads/news/${imageName}`}
+        src={`${imageName}`}
         alt={heading}
         className="rounded"
         style={{ width: '100%', height: '160px', objectFit: 'cover' }}

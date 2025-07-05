@@ -88,7 +88,7 @@ function NewsDetailPage() {
       <Row className="mt-4">
         <Col>
           <img
-            src={`${config.baseUrl}/uploads/news/${news.imageName}`}
+            src={`${news.imageName}`}
             alt="News"
             className="img-fluid rounded shadow"
             style={{ width: '100%', maxHeight: '500px', objectFit: 'cover' }}

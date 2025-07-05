@@ -13,13 +13,13 @@ function MessageContainer() {
     fetchMessages();
   }, []);
 
-   useEffect(() => {
-      AOS.init({
-        duration: 400,  // animation duration in ms
-      });
-    }, []);
-  
-  
+  useEffect(() => {
+    AOS.init({
+      duration: 400,  // animation duration in ms
+    });
+  }, []);
+
+
   const fetchMessages = async () => {
     try {
       const res = await axios.get(`${config.baseUrl}/messages/all`);
@@ -36,7 +36,7 @@ function MessageContainer() {
       style={{
         backgroundColor: "#F5F5F5",
         border: "1px solid #ddd",
-        overflowX:'hidden'
+        overflowX: 'hidden'
       }}
     >
       <Row className="mb-3 px-2">
@@ -50,7 +50,7 @@ function MessageContainer() {
               paddingBottom: "4px",
             }}
 
-            data-aos = 'fade-left'
+            data-aos='fade-left'
           >
             Message from Our Team
           </h4>
@@ -62,13 +62,14 @@ function MessageContainer() {
           key={msg._id}
           id={msg._id}
           position={msg.position}
-          image={`${config.baseUrl}/uploads/messages/${msg.imageName}`}
+          image={msg.imageName}   // Use as-is
           descriptionList={[
             `Name: ${msg.name}`,
             `Contact: ${msg.contact}`,
             `Email: ${msg.email}`,
           ]}
         />
+
       ))}
     </Container>
   );

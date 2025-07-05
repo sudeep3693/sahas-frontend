@@ -8,7 +8,7 @@ function IndividualMember({ name, image, position }) {
     <div className="individual-member">
       <div className="member-card">
         <img
-          src={`${config.baseUrl}/uploads/team/${image}`}
+          src={`${image}`}
           alt={name}
           className="member-image"
         />

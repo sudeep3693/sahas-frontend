@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import useGallaryImage from '../AdminComponents/hooks/useGallaryImage.jsx';
 import '../Css/OurGallery.css';
-import config from '../Constants/config.js';
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // This is required
+import 'aos/dist/aos.css';
 
 const OurGallery = () => {
   const { data: images, loading, error } = useGallaryImage();
@@ -11,23 +10,18 @@ const OurGallery = () => {
   const startX = useRef(null);
 
   const openModal = (index) => {
-    console.log("Image clicked, index:", index);
     setSelectedIndex(index);
   };
 
   const closeModal = () => setSelectedIndex(null);
 
   const showPrev = () =>
-    setSelectedIndex((prev) =>
-      prev > 0 ? prev - 1 : images.length - 1
-    );
+    setSelectedIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
 
   const showNext = () =>
-    setSelectedIndex((prev) =>
-      prev < images.length - 1 ? prev + 1 : 0
-    );
+    setSelectedIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
 
-  // Keyboard support
+  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (selectedIndex !== null) {
@@ -36,19 +30,16 @@ const OurGallery = () => {
         else if (e.key === 'Escape') closeModal();
       }
     };
-
-    
-
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedIndex]);
+  }, [selectedIndex, images.length]);
 
-      useEffect(() => {
-        AOS.init({
-          duration: 1000,  // animation duration in ms
-        });
-      }, []);
-  // Touch support
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
+  // Touch swipe support
   const handleTouchStart = (e) => {
     startX.current = e.touches[0].clientX;
   };
@@ -57,8 +48,8 @@ const OurGallery = () => {
     const endX = e.changedTouches[0].clientX;
     const delta = startX.current - endX;
 
-    if (delta > 50) showNext();     // swipe left
-    if (delta < -50) showPrev();    // swipe right
+    if (delta > 50) showNext();
+    if (delta < -50) showPrev();
   };
 
   if (loading) return <p>Loading gallery...</p>;
@@ -68,11 +59,11 @@ const OurGallery = () => {
     <>
       <div className="gallery">
         {images && images.length > 0 ? (
-          images.map((filename, index) => (
+          images.map((image, index) => (
             <img
               key={index}
-              src={`${config.baseUrl}/uploads/gallery/${filename}`}
-              alt={`img-${index}`}
+              src={image.url}               // ✅ Use actual fetched image URL
+              alt={`gallery-img-${index}`}
               onClick={() => openModal(index)}
               className="gallery-image"
             />
@@ -89,18 +80,15 @@ const OurGallery = () => {
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
-          <div
-            className="modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="close-button" onClick={closeModal}>
               &times;
             </button>
             <img
-              src={`${config.baseUrl}/uploads/gallery/${images[selectedIndex]}`}
+              src={images[selectedIndex].url}       // ✅ Use fetched image URL here too
               alt={`modal-img-${selectedIndex}`}
               className="modal-image"
-              data-aos = "fade-up"
+              data-aos="fade-up"
             />
             <div className="modal-buttons">
               <button onClick={showPrev}>&#10094;</button>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../Css/Popup.css";
 import useNoticeImage from "../../AdminComponents/hooks/useNoticeImage";
 import { Container } from "react-bootstrap";
-import config from "../../Constants/config";
+
 const Popup = ({ onClose }) => {
   const { data: images, loading, error } = useNoticeImage();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -37,7 +37,7 @@ const Popup = ({ onClose }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#f8f9fa", // Optional: a background to fill extra space
+          backgroundColor: "#f8f9fa",
           boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
           borderRadius: "10px",
         }}
@@ -56,9 +56,10 @@ const Popup = ({ onClose }) => {
         >
           &times;
         </span>
+
         <img
-          src={`${config.baseUrl}/uploads/notice/${images[currentIndex]}`}
-          alt="Popup"
+          src={images[currentIndex]?.url}   // ✅ Fixed: Use actual image URL
+          alt={`Notice ${currentIndex + 1}`}
           style={{
             maxWidth: "100%",
             maxHeight: "100%",

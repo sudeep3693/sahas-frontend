@@ -65,7 +65,7 @@ const TeamRecordList = ({ selectedCategory, refreshKey }) => {
                 </Button>
                 <Card.Img
                   variant="top"
-                  src={`${config.baseUrl}/uploads/team/${record.imageName}`}
+                  src={`${record.imageName}`}
                   style={{ height: '220px', objectFit: 'cover' }}
                 />
                 <Card.Body>
