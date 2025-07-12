@@ -40,7 +40,7 @@ useEffect(() => {
   ];
 
   const districts = [
-    "Kathmandu", "Lalitpur", "Bhaktapur", "Pokhara", "Biratnagar", "Butwal"
+    "Kathmandu", "Lalitpur", "Bhaktapur", "Kaski", "Baglung", "Tanahun"
   ];
 
   const handleChange = (e) => {
