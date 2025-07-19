@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import config from "../Constants/config";
-import { FaFilePdf, FaTimes } from "react-icons/fa";
+import { FaFilePdf, FaTimes, FaDownload } from "react-icons/fa";
 import "../Css/DocumentManager.css";
 
 const baseURL = `${config.baseUrl}/documents`;
@@ -15,7 +15,7 @@ function DocumentManager() {
 
   useEffect(() => {
     fetchDocuments();
-  }, [category]); // refetch when category changes
+  }, [category]);
 
   const fetchDocuments = async () => {
     try {
@@ -107,7 +107,27 @@ function DocumentManager() {
                 <FaTimes />
               </button>
               <FaFilePdf size={30} color="red" />
+
               <p>{doc.heading}</p>
+
+              {/* View PDF (open in new tab) */}
+              <a
+                href={`${config.baseUrl}${doc.filePath}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="view-link"
+              >
+                View PDF
+              </a>
+
+              {/* Download PDF directly */}
+              <a
+                href={`${config.baseUrl}${doc.filePath}`}
+                download
+                className="download-link"
+              >
+                <FaDownload /> Download
+              </a>
             </div>
           ))
         )}

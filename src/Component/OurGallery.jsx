@@ -13,7 +13,9 @@ const OurGallery = () => {
     setSelectedIndex(index);
   };
 
-  const closeModal = () => setSelectedIndex(null);
+  const closeModal = () => {
+    setSelectedIndex(null);
+  };
 
   const showPrev = () =>
     setSelectedIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
@@ -33,6 +35,16 @@ const OurGallery = () => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedIndex, images.length]);
+
+  // Handle browser back button
+  useEffect(() => {
+    if (selectedIndex !== null) {
+      window.history.pushState({ modalOpen: true }, "");
+      const handlePopState = () => closeModal();
+      window.addEventListener("popstate", handlePopState);
+      return () => window.removeEventListener("popstate", handlePopState);
+    }
+  }, [selectedIndex]);
 
   // Initialize AOS
   useEffect(() => {
@@ -62,7 +74,7 @@ const OurGallery = () => {
           images.map((image, index) => (
             <img
               key={index}
-              src={image.url}               // ✅ Use actual fetched image URL
+              src={image.url}
               alt={`gallery-img-${index}`}
               onClick={() => openModal(index)}
               className="gallery-image"
@@ -81,11 +93,12 @@ const OurGallery = () => {
           onTouchEnd={handleTouchEnd}
         >
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="close-button" onClick={closeModal}>
+            <button type="button" className="close-button" onClick={closeModal}>
               &times;
             </button>
+
             <img
-              src={images[selectedIndex].url}       // ✅ Use fetched image URL here too
+              src={images[selectedIndex].url}
               alt={`modal-img-${selectedIndex}`}
               className="modal-image"
               data-aos="fade-up"

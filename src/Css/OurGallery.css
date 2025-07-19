@@ -35,6 +35,8 @@
   justify-content: center;
   z-index: 9999;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 .modal-content {
@@ -44,15 +46,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  margin: 0;
+  background: transparent;
 }
 
+/* FULLSCREEN image (no borders, no padding) */
 .modal-content img {
-  max-width: 95vw;
-  max-height: 90vh;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  border-radius: 10px;
-  border: 4px solid #28A745; /* Green border as primary */
-  box-shadow: 0 0 15px rgba(40, 167, 69, 0.5); /* subtle green glow */
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
 }
 
 .modal-buttons {
@@ -82,18 +90,43 @@
   box-shadow: 0 0 10px rgba(255, 165, 0, 0.9);
 }
 
+/* Close button: rounded square border */
 .close-button {
   position: absolute;
   top: 10px;
   right: 20px;
   font-size: 2rem;
-  color: #28A745; /* Primary green for close button */
+  color: #28A745; /* Primary green */
   background: none;
-  border: none;
+  border: 2px solid #28A745;
+  border-radius: 8px;
   cursor: pointer;
-  transition: color 0.3s ease;
+  width: 40px;
+  height: 40px;
+  line-height: 32px;
+  text-align: center;
+  padding: 0;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  z-index: 10000;
+  pointer-events: auto;
 }
 
 .close-button:hover {
-  color: #FFA500; /* Accent light orange on hover */
+  color: #FFA500;
+  border-color: #FFA500;
 }
+
+
+/* Navigation buttons same style (optional) */
+.modal-buttons button {
+  border-radius: 8px;  /* Rounded square */
+}
+
+/* Hide close & nav buttons on mobile */
+@media (max-width: 768px) {
+  .close-button,
+  .modal-buttons {
+    display: none;
+  }
+}
+

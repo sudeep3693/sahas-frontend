@@ -71,4 +71,4 @@ const Popup = ({ onClose }) => {
   );
 };
 
-export default Popup;
+export default Popup;  

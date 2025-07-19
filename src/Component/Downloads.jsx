@@ -46,7 +46,9 @@ function Downloads({ type }) {
           <Spinner animation="border" variant="primary" />
         </div>
       ) : documents.length === 0 ? (
-        <p className="text-center text-muted">No documents found in "{type}" category.</p>
+        <p className="text-center text-muted">
+          No documents found in "{type}" category.
+        </p>
       ) : (
         <Row className="g-4 justify-content-center">
           {documents.map((doc, index) => (
@@ -59,9 +61,10 @@ function Downloads({ type }) {
                   </div>
                   <Button
                     variant="outline-primary"
-                    href={doc.filePath}  // ✅ FIXED: Use direct Cloudinary URL
+                    href={`${config.baseUrl}${doc.filePath}`} 
                     target="_blank"
                     rel="noopener noreferrer"
+                    download
                     className="mt-3"
                     data-aos='fade-up'
                   >

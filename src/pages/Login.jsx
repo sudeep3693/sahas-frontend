@@ -1,31 +1,34 @@
-
-
 import React, { useState, useContext } from 'react';
 import '../Css/LoginPage.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../Authentication/AuthContext';
 import config from '../Constants/config';
+import { encrypt } from '../Security/AESUtil';
+
 const LoginPage = () => {
-  const { login } = useContext(AuthContext); // 👈 import login function
+  const { login } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => setShowPassword(!showPassword);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
+     
+      const encryptedUsername = encrypt(username);
+      const encryptedPassword = encrypt(password);
+
       const response = await axios.post(`${config.baseUrl}/admin/login`, {
-        username,
-        password
+        username: encryptedUsername,
+        password: encryptedPassword
       });
 
       if (response.status === 200) {
-        login(); 
+        login();
         navigate('/admin');
       }
     } catch (error) {
@@ -33,7 +36,7 @@ const LoginPage = () => {
     }
   };
 
- return (
+  return (
     <div className="login-page">
       <div className="overlay">
         <div className="login-box">
