@@ -1,6 +1,6 @@
 const config = {
 
-    baseUrl :"https://sahas-backend.onrender.com",
+    baseUrl :"https://sahas.coop.np",
     
 
 };
