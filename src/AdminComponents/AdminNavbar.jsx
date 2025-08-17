@@ -2,7 +2,7 @@ import{ useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { FiLogOut } from "react-icons/fi";
-import logo from '../Images/logo.jpeg';
+import logo from '../Images/headerLogo.png';
 import '../Css/App.css';
 import { AuthContext } from '../Authentication/AuthContext';
 
@@ -25,7 +25,7 @@ function AdminNavBar() {
               src={logo}
               alt="Sahas Cooperative Logo"
               className="img-fluid"
-              style={{ maxHeight: '110px' }}
+              style={{ maxHeight: '110px', width: '80%' }}
             />
           </Navbar.Brand>
 

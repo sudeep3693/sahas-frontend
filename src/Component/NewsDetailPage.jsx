@@ -91,7 +91,7 @@ function NewsDetailPage() {
             src={`${news.imageName}`}
             alt="News"
             className="img-fluid rounded shadow"
-            style={{ width: '100%', maxHeight: '500px', objectFit: 'cover' }}
+            style={{ width: '100%', maxHeight: '1500px', objectFit: 'cover' }}
           />
         </Col>
       </Row>
