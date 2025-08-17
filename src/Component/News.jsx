@@ -1,19 +1,10 @@
 import config from '../Constants/config';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // This is required
 
-
 function News({ imageName, heading, date, description, id }) {
-
-
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,  // animation duration in ms
-    });
-  }, []);
-
 
 
   const navigate = useNavigate();
@@ -21,16 +12,10 @@ function News({ imageName, heading, date, description, id }) {
   const handleReadMore = () => {
     navigate(`/news-details/${id}`);
   };
-
-  // Truncate heading if it exceeds 25 characters
-  const truncatedHeading = heading.length > 25
-    ? `${heading.slice(0, 50)}...`
-    : heading;
-
   return (
     <div
       className="rounded shadow-sm d-flex flex-column align-items-center"
-      data-aos = "fade-up"
+      data-aos="fade-up"
       style={{
         backgroundColor: '#F5F5F5',
         width: '100%',
@@ -53,9 +38,37 @@ function News({ imageName, heading, date, description, id }) {
         <h5 className="mb-2" style={{ fontSize: '0.9rem', color: '#2E8B57' }}>
           {date}
         </h5>
-        <p className="mb-3" style={{ fontSize: '0.9rem', color: '#006400' }}>
-          {truncatedHeading}
-        </p>
+<p
+  className="mb-1"
+  style={{
+    fontSize: '0.92rem',
+    color: '#006400',
+    fontWeight: 'bold',
+    textAlign: 'justify',
+    display: '-webkit-box',
+    WebkitLineClamp: 2,      
+    WebkitBoxOrient: 'vertical',
+    overflow: 'hidden'
+  }}
+>
+  {heading}
+</p>
+
+<p
+  className="mb-1"
+  style={{
+    fontSize: '0.9rem',
+    color: '#006400',
+    textAlign: 'justify',
+    display: '-webkit-box',
+    WebkitLineClamp: 2,      
+    WebkitBoxOrient: 'vertical',
+    overflow: 'hidden'
+  }}
+>
+  {description}
+</p>
+
         <div className="text-center mt-2">
           <button
             className="btn px-4 py-2"

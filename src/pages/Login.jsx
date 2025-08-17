@@ -14,11 +14,16 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+
+  const handleForgotPassword = () => {
+    navigate("/forgetPassword");
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-     
+
       const encryptedUsername = encrypt(username);
       const encryptedPassword = encrypt(password);
 
@@ -73,8 +78,22 @@ const LoginPage = () => {
                 </button>
               </div>
               <small className="forgot-password">
-                <a href="/forgot-password">Forgot Password?</a>
+                <button
+                  onClick={handleForgotPassword}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    color: "#007bff",
+                    cursor: "pointer",
+                    padding: 0,
+                    fontSize: "inherit",
+                    textDecoration: "underline"
+                  }}
+                >
+                  Forgot Password
+                </button>
               </small>
+
             </div>
 
             <button type="submit" className="login-button">
