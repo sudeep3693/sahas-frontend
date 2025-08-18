@@ -11,7 +11,7 @@ export default function OtpComponent() {
     const sendOtp = async () => {
         if (!email) return alert("Please enter your email");
         try {
-            await axios.post(`${config.baseUrl}/credintial/send`, { email });
+            await axios.post(`${config.baseUrl}/credential/send`, { email });
             alert("OTP sent to your email");
             setStep(2);
         } catch (err) {
@@ -23,10 +23,10 @@ export default function OtpComponent() {
         if (!otp) return alert("Please enter the OTP");
         try {
             // Step 1: Verify OTP
-            await axios.post(`${config.baseUrl}/credintial/verify`, { email, otp });
+            await axios.post(`${config.baseUrl}/credential/verify`, { email, otp });
 
             // Step 2: Generate new password and send via email
-            await axios.post(`${config.baseUrl}/credintial/password/generate`, { email });
+            await axios.post(`${config.baseUrl}/credential/password/generate`, { email });
 
             alert("OTP verified! A new password has been sent to your email.");
             setStep(1); // Reset form
