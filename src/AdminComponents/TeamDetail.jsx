@@ -18,7 +18,9 @@ const TeamDetail = () => {
     { label: 'Loan Sub-Committee (ऋण उप-समिति)', value: 'loan-committee' },
     { label: 'Education Sub-Committee (शिक्षा उप-समिति)', value: 'education-committee' },
     { label: 'Advisory Committee (सल्लाहकार समिति)', value: 'advisory-committee' },
-    { label: 'Employees (कर्मचारी)', value: 'employees' }
+    { label: 'Employees (कर्मचारी)', value: 'employees' },
+    { label: 'Account Comittee (लेखा समिति)', value: 'account-comittee' },
+
   ];
 
   const handleChange = (index, e) => {
