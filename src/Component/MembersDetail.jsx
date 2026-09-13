@@ -21,15 +21,15 @@ const color = '#006400';
 function MembersDetail() {
   const [financialData, setFinancialData] = useState([]);
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
-  const [updatedDate,setUpdatedDate] = useState(null);
+  const [updatedDate, setUpdatedDate] = useState(null);
 
-  
-    useEffect(() => {
-      AOS.init({
-        duration: 500,  // animation duration in ms
-      });
-    }, []);
-  
+
+  useEffect(() => {
+    AOS.init({
+      duration: 500,  // animation duration in ms
+    });
+  }, []);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,12 +38,12 @@ function MembersDetail() {
         const data = res.data[0]; // Adjust if backend returns different format
         setUpdatedDate(data.academicYear);
         setFinancialData([
-          { label: 'Members', count: data.members, icon: <BsPersonFill size={50} color={color} /> },
-          { label: 'Share Capital', count: data.sharecapital, icon: <BsCashCoin size={50} color={color} /> },
-          { label: 'Reserve Fund', count: data.reservefund, icon: <BsPiggyBank size={50} color={color} /> },
-          { label: 'Deposit', count: data.deposit, icon: <BsBank size={50} color={color} /> },
-          { label: 'Loan', count: data.loan, icon: <BsCreditCard2FrontFill size={50} color={color} /> },
-          { label: 'Total Assets', count: data.totalassets, icon: <BsBarChartFill size={50} color={color} /> },
+          { label: 'सदस्यहरू', count: data.members, icon: <BsPersonFill size={50} color={color} /> },
+          { label: 'चुक्ता पुँजी ', count: data.sharecapital, icon: <BsCashCoin size={50} color={color} /> },
+          { label: 'जगेडा कोष', count: data.reservefund, icon: <BsPiggyBank size={50} color={color} /> },
+          { label: 'निक्षेप', count: data.deposit, icon: <BsBank size={50} color={color} /> },
+          { label: 'कर्जा', count: data.loan, icon: <BsCreditCard2FrontFill size={50} color={color} /> },
+          { label: 'कुल सम्पत्ति', count: data.totalassets, icon: <BsBarChartFill size={50} color={color} /> },
         ]);
       } catch (error) {
         console.error("Unable to fetch financial data:", error);
@@ -54,15 +54,15 @@ function MembersDetail() {
   }, []);
 
   return (
-    <div className="py-5 px-xs-1 px-sm-1" style={{ backgroundColor: '#f8f9fa', overflow:'hidden' }}>
+    <div className="py-5 px-xs-1 px-sm-1" style={{ backgroundColor: '#f8f9fa', overflow: 'hidden' }}>
       <Container fluid>
         <Row className="mb-1 align-items-center justify-content-between">
           <Col xs={12} md="auto" className="text-center mx-auto">
-            <h2 className="fw-bold pb-2 d-inline-block" style={{color:"#001F3F"}} data-aos = 'fade-left'>
+            <h2 className="fw-bold pb-2 d-inline-block" style={{ color: "#001F3F" }} data-aos='fade-left'>
               -Institutional Profile-
             </h2>
           </Col>
-          <p className="d-flex align-items-center text-muted fs-6" data-aos = 'fade-right'>Updated as per {updatedDate} report</p>
+          <p className="d-flex align-items-center text-muted fs-6" data-aos='fade-right'>Updated as per {updatedDate} report</p>
         </Row>
 
         <Row className="justify-content-center g-2" ref={ref}>
@@ -71,7 +71,7 @@ function MembersDetail() {
               <div
                 className="p-3 rounded-4 shadow-sm bg-white h-100 d-flex flex-column justify-content-center info-card align-items-center border border-2"
                 style={{ borderColor: '#0d6efd', transition: 'transform 0.3s ease-in-out' }}
-                data-aos = 'fade-up'
+                data-aos='fade-up'
               >
                 {item.icon}
                 <div className="fw-bold fs-5 text-wrap-break" style={{ color }}>

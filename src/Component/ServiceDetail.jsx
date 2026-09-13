@@ -10,7 +10,6 @@ function ServiceDetail({ title, headerImage, otherImage, description, id }) {
   return (
     <div className="service-detail-container" onClick={handleClick}>
       <div className="service-card">
-        <div className="service-badge-pill">साहस सेवा</div>
         <div className="image-wrapper">
           <img src={headerImage} alt={title} className="service-image" />
         </div>

@@ -31,7 +31,6 @@ function TeamDetail({ type }) {
       <div className="team-list-header">
         <span className="team-list-header-sn">क्र.सं.</span>
         <span className="team-list-header-name">नाम</span>
-        <span className="team-list-header-position">पद</span>
         <span className="team-list-header-contact">सम्पर्क</span>
       </div>
 
