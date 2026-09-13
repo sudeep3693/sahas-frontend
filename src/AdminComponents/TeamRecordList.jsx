@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Col, Row, Spinner, Button } from 'react-bootstrap';
+import { Table, Spinner, Button, Badge } from 'react-bootstrap';
 import axios from 'axios';
 import config from '../Constants/config';
 
@@ -20,13 +20,11 @@ const TeamRecordList = ({ selectedCategory, refreshKey }) => {
     }
   };
 
-  const handleDelete = async (id, imageName) => {
+  const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this member?')) return;
     setDeletingId(id);
     try {
-      await axios.delete(`${config.baseUrl}/teamDetail/delete/${id}`, {
-        data: { imageName }
-      });
+      await axios.delete(`${config.baseUrl}/teamDetail/delete/${id}`);
       setRecords(records.filter((rec) => rec._id !== id));
     } catch (err) {
       console.error('Failed to delete record:', err);
@@ -40,42 +38,71 @@ const TeamRecordList = ({ selectedCategory, refreshKey }) => {
     fetchRecords();
   }, [selectedCategory, refreshKey]);
 
+  const categoryLabel = selectedCategory
+    .replace(/-/g, ' ')
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+
   return (
     <div className="mt-5">
-      <h4 className="mb-4 text-center">Current Members: {selectedCategory.replace(/-/g, ' ')}</h4>
+      <div className="d-flex align-items-center justify-content-between mb-3">
+        <h5 className="mb-0">
+          Current Members: <span className="text-success">{categoryLabel}</span>
+        </h5>
+        <Badge bg="secondary" pill>{records.length} member{records.length !== 1 ? 's' : ''}</Badge>
+      </div>
+
       {loading ? (
-        <div className="text-center">
-          <Spinner animation="border" />
+        <div className="text-center py-4">
+          <Spinner animation="border" variant="success" />
         </div>
       ) : records.length === 0 ? (
-        <p className="text-center text-muted">No members found.</p>
+        <p className="text-center text-muted py-3">No members found in this category.</p>
       ) : (
-        <Row>
-          {records.map((record) => (
-            <Col md={4} sm={6} key={record._id} className="mb-4">
-              <Card className="position-relative shadow-sm">
-                <Button
-                  variant="danger"
-                  size="sm"
-                  className="position-absolute top-0 end-0 m-2"
-                  onClick={() => handleDelete(record._id, record.imageName)}
-                  disabled={deletingId === record._id}
-                >
-                  ❌
-                </Button>
-                <Card.Img
-                  variant="top"
-                  src={`${record.imageName}`}
-                  style={{ height: '220px', objectFit: 'cover' }}
-                />
-                <Card.Body>
-                  <Card.Title>{record.name}</Card.Title>
-                  <Card.Text className="text-muted">{record.position}</Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
+        <div className="table-responsive rounded-3 shadow-sm">
+          <Table bordered hover className="mb-0 align-middle">
+            <thead className="table-dark">
+              <tr>
+                <th style={{ width: '40px' }}>#</th>
+                <th>Name</th>
+                <th>Position / Role</th>
+                <th>Contact</th>
+                <th style={{ width: '80px' }}>Order</th>
+                <th style={{ width: '80px' }} className="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {records.map((record, index) => (
+                <tr key={record._id}>
+                  <td className="text-muted">{index + 1}</td>
+                  <td className="fw-semibold">{record.name}</td>
+                  <td>{record.position}</td>
+                  <td>
+                    {record.contactNumber ? (
+                      <a href={`tel:${record.contactNumber}`} className="text-decoration-none text-success">
+                        📞 {record.contactNumber}
+                      </a>
+                    ) : (
+                      <span className="text-muted">—</span>
+                    )}
+                  </td>
+                  <td className="text-center">
+                    <Badge bg="light" text="dark">{record.positionOrder ?? 0}</Badge>
+                  </td>
+                  <td className="text-center">
+                    <Button
+                      variant="outline-danger"
+                      size="sm"
+                      onClick={() => handleDelete(record._id)}
+                      disabled={deletingId === record._id}
+                    >
+                      {deletingId === record._id ? <Spinner animation="border" size="sm" /> : '🗑️'}
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
       )}
     </div>
   );

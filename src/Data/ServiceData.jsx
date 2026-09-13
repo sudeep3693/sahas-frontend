@@ -6,15 +6,37 @@ import smsImage from "../Images/Services/smsImage.jpeg";
 import smsLogo from "../Images/Services/smsLogo.jpeg";
 import others from "../Images/Services/others.png";
 
-
 const Services = [
+  {
+    title: "मोबाइल बैंकिङ सेवा",
+    image: mblBankingImage,
+    headerImage: mblBankingLogo,
+    description: "साहस सहकारीको आधुनिक मोबाइल बैंकिङ सेवामार्फत अब जुनसुकै ठाउँबाट २४ सै घण्टा सुरक्षित रूपमा आफ्नो खाता सञ्चालन गर्नुहोस्। खाताको मौज्दात (Balance) जाँच गर्न, रकम ट्रान्सफर गर्न, बिजुली, खानेपानी, इन्टरनेटको बिल तिर्न र मोबाइल टप-अप गर्न सकिने अत्यन्तै सहज र भरपर्दो सुविधा।\n\nआधुनिक प्रविधि र बलियो सुरक्षा प्रणालीसहितको यो सेवाले तपाईंको बहुमूल्य समयको बचत गर्दै सहकारी सेवालाई तपाईंको हातको औंलामा ल्याइदिएको छ।\n\nहाम्रो आधिकारिक मोबाइल एप डाउनलोड गर्न तल दिइएको लिंक प्रयोग गर्नुहोस्:",
+    id: "1",
+    link1: "https://play.google.com/store/apps/details?id=com.infodev.mSahas&pcampaignid=web_share",
+    link2: "https://play.google.com/store/apps/details?id=com.infodev.dabali&pli=1"
+  },
+  {
+    title: "एसएमएस बैंकिङ सेवा",
+    image: smsImage,
+    headerImage: smsLogo,
+    description: "इन्टरनेट वा स्मार्टफोन नहुँदा पनि आफ्नो खाताको गतिविधिबारे सधैं सुसूचित रहनुहोस्। खातामा रकम जम्मा हुँदा, झिक्दा वा कर्जाको किस्ता चुक्ता गर्दा तपाईंको मोबाइलमा तत्काल एसएमएस (SMS Alert) प्राप्त हुनेछ।\n\nयो सेवा सरल, भरपर्दो र प्रभावकारी छ, जसले अनधिकृत कारोबारबाट तपाईंको खातालाई सुरक्षित राख्न र तत्काल कारोबारको जानकारी लिन मद्दत गर्दछ।",
+    id: "2"
+  },
+  {
+    title: "क्यूआर (QR) भुक्तानी सेवा",
+    image: qrImage,
+    headerImage: qrLogo,
+    description: "नगद बोक्ने र खुद्रा पैसा खोज्ने झन्झटबाट सदाका लागि मुक्त हुनुहोस्! साहस सहकारीको सुरक्षित फोनपे (Fonepay) तथा नेपालपे क्यूआर कोडमार्फत पसल, डिपार्टमेन्टल स्टोर, रेस्टुरेन्ट तथा विभिन्न सेवाहरूमा सजिलै स्क्यान गरी तत्काल भुक्तानी गर्नुहोस्।\n\nछिटो, आधुनिक र पारदर्शी डिजिटल भुक्तानीको अनुभव लिनुहोस्।",
+    id: "3"
+  },
+  {
+    title: "अन्य सदस्य सेवाहरू",
+    image: others,
+    headerImage: others,
+    description: "साहस सहकारीले आफ्ना सदस्यहरूको सर्वाङ्गीण हितका लागि देशभित्र र बाहिरबाट रकम प्राप्त गर्न रेमिट्यान्स (विप्रेषण) सुविधा, व्यवसाय तथा बचत परामर्श, स्वास्थ्य तथा राहत कोष र सदस्य कल्याणकारी कार्यक्रमहरू निरन्तर सञ्चालन गर्दै आएको छ।",
+    id: "4"
+  }
+];
 
-    {title:"Mobile Banking", image:mblBankingImage, headerImage:mblBankingLogo, description:"Mobile Banking at Sahas Saving and Credit Cooperative is more than just a digital extension of our services—it is a complete banking solution that brings the cooperative to your fingertips. In today’s fast-paced world, convenience and time-saving are crucial, and our mobile banking service ensures that members can access essential financial services anytime, anywhere.\n\nOur mobile banking application is user-friendly, secure, and equipped with a wide range of features. Members can check their account balances, view recent transactions, transfer funds between accounts, and make payments directly from their mobile phones. Additionally, the app allows utility bill payments, mobile top-ups, and QR code scanning for instant transactions. This level of convenience greatly reduces the need for physical visits to the cooperative office, saving time and enhancing customer satisfaction.\n\nSecurity is a top priority. The app uses multiple layers of encryption, secure login methods including OTP verification, and real-time notifications to keep users informed and protected. Regular software updates ensure that the app stays current with the latest security features and user experience improvements.\n\nAt Sahas Cooperative, we believe that mobile banking is not just a tool but a necessity in today’s digital economy. It promotes financial inclusion, empowers members to be in control of their finances, and supports our vision of modern, tech-driven cooperative services.\n\n Get our Mobile Banking Application from below:",id:"1",link1:"https://play.google.com/store/apps/details?id=com.infodev.mSahas&pcampaignid=web_share",
-        link2: "https://play.google.com/store/apps/details?id=com.infodev.dabali&pli=1"
-    },
-    {title:"SMS Service", image:smsImage, headerImage:smsLogo, description:"The SMS Banking service provided by Sahas Saving and Credit Cooperative is a reliable and easy-to-use solution designed for members who prefer simplicity or may not have access to smartphones or internet services. By using basic text messaging, members can access essential banking services and stay informed about their account activities in real-time.\n\nWith SMS alerts, members receive instant notifications about deposits, withdrawals, loan dues, account balance updates, and other important transactions. This ensures that every member, regardless of digital literacy or location, stays updated and connected with their financial activities. Whether you’re in a remote village or in the heart of a city, SMS banking brings your account information right to your phone.\n\nAnother key benefit of our SMS service is its role in enhancing security. Real-time alerts help detect unauthorized activity quickly, providing peace of mind and helping to prevent fraud. Members can also request mini-statements or balance details by sending specific codes to our designated SMS number.\n\nFor many users, especially senior citizens or those without smartphones, SMS banking is an invaluable service. It reflects our cooperative’s commitment to accessibility, inclusivity, and customer care—ensuring no one is left behind in the journey toward digital finance.",id:"2"},
-     {title:"QR Service", image:qrImage, headerImage:qrLogo, description:"The QR (Quick Response) service has revolutionized digital payments in Nepal and around the world. It enables customers to make seamless, contactless transactions by simply scanning a code using their mobile devices. At Sahas Saving and Credit Cooperative, the QR payment facility is part of our drive toward a cashless and convenient banking experience. With this service, members can easily pay for goods and services at partner merchants without needing to carry cash or swipe a card.\n\nQR payments are extremely secure. Each transaction is encrypted, and no physical exchange of cash or card information takes place, reducing the chances of theft and fraud. This service is compatible with multiple digital wallets and mobile banking apps, offering flexibility and convenience to users. Members can instantly transfer funds, pay utility bills, recharge mobile balances, and shop online or in-store with just a few taps on their smartphones.\n\nWhat makes our QR service even more reliable is its integration with our core banking system, ensuring real-time balance updates and transaction tracking. This is especially useful for small business owners, daily commuters, and those who prefer quick and hygienic transactions in a post-pandemic world. Sahas Cooperative encourages all members to embrace this modern, smart, and secure payment solution.",id:"3"},
-     {title:"Others", image:others, headerImage:others, description:"..",id:"4"}
-    
-  ]
-  export default Services;
+export default Services;

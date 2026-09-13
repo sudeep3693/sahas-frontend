@@ -1,15 +1,143 @@
+/* Service.css - Premium Cooperative Look */
+
+.service-details-bg {
+  background: linear-gradient(180deg, #F0F9F3 0%, #FFFFFF 30%, #F5F7F8 100%);
+  min-height: 88vh;
+}
+
+.service-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #002B5B;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 6px 14px;
+  border-radius: 6px;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 43, 91, 0.1);
+}
+
+.service-back-link:hover {
+  color: #28A745;
+  background: #E8F5E9;
+  border-color: #28A745;
+  text-decoration: none;
+}
+
+.service-category-badge {
+  background: linear-gradient(135deg, #002B5B 0%, #001F3F 100%);
+  color: #FFFFFF;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.service-image-card {
+  background: #FFFFFF;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 43, 91, 0.08);
+}
+
+.service-image-container {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  background: #F4FAF6;
+}
+
+.service-detail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.service-image-card:hover .service-detail-img {
+  transform: scale(1.04);
+}
+
+.service-detail-icon-wrap {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2px solid #E8F5E9;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.15);
+  margin: -40px auto 8px auto;
+  padding: 6px;
+  position: relative;
+  z-index: 2;
+}
+
+.service-detail-icon {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.service-hero-title {
+  color: #002B5B;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+.service-content-card {
+  background: #FFFFFF;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 43, 91, 0.08);
+  overflow: hidden;
+}
+
+.service-content-header {
+  color: #002B5B;
+  font-weight: 700;
+  font-size: 1.5rem;
+  border-left: 4px solid #28A745;
+  padding-left: 12px;
+}
+
+.service-paragraph {
+  color: #4A5568;
+  font-size: 1.02rem;
+  line-height: 1.85;
+  margin-bottom: 1.2rem;
+  text-align: justify;
+}
+
+.service-app-title {
+  color: #002B5B;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.app-store-badge-link {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.app-store-badge-link:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* Watermark */
 .watermark-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 50%;
-  height: auto;
-  max-width: 350px;
-  max-height: 350px;
+  width: 45%;
+  max-width: 280px;
+  max-height: 280px;
   transform: translate(-50%, -50%);
   z-index: 0;
   pointer-events: none;
-  opacity: 0.20;
+  opacity: 0.08;
 }
 
 .watermark-img {
@@ -17,4 +145,18 @@
   height: 100%;
   object-fit: contain;
   display: block;
+}
+
+@media (max-width: 767px) {
+  .service-image-container {
+    height: 220px;
+  }
+
+  .service-content-header {
+    font-size: 1.25rem;
+  }
+
+  .service-paragraph {
+    font-size: 0.95rem;
+  }
 }

@@ -9,11 +9,16 @@ function ServiceDetail({ title, headerImage, otherImage, description, id }) {
 
   return (
     <div className="service-detail-container" onClick={handleClick}>
-      <div className="service-card transition">
+      <div className="service-card">
+        <div className="service-badge-pill">साहस सेवा</div>
         <div className="image-wrapper">
-          <img src={headerImage} alt="Service" className="service-image" />
+          <img src={headerImage} alt={title} className="service-image" />
         </div>
-        <h2 className="service-title">{title}</h2>
+        <h3 className="service-title">{title}</h3>
+        <div className="service-explore-link">
+          <span>विस्तृत जानकारी</span>
+          <span className="service-arrow">&rarr;</span>
+        </div>
       </div>
     </div>
   );

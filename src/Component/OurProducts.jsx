@@ -49,21 +49,40 @@ function OurProducts() {
       {/* Header */}
       <div
         style={{
-          backgroundColor: '#002B5B', // Navy Blue (Secondary)
-          height: '200px',
+          background: 'linear-gradient(135deg, #002B5B 0%, #001F3F 100%)',
+          minHeight: '220px',
           color: 'white',
           zIndex: 1,
+          paddingTop: '2rem',
+          paddingBottom: '5rem',
         }}
-        className="d-flex flex-column align-items-center pt-4 text-center"
+        className="d-flex flex-column align-items-center text-center px-3"
       >
-        <div className="fs-2 fw-bold" data-aos = 'fade-left'>Our Products</div>
-        <div  data-aos = 'fade-left'>Explore products we offer </div>
+        <div 
+          style={{ 
+            backgroundColor: 'rgba(40, 167, 69, 0.2)', 
+            color: '#7DDF92', 
+            border: '1px solid rgba(40, 167, 69, 0.4)',
+            padding: '4px 16px', 
+            borderRadius: '20px', 
+            fontSize: '0.85rem', 
+            fontWeight: '600',
+            marginBottom: '8px'
+          }}
+          data-aos="fade-down"
+        >
+          साहस बचत तथा ऋण योजनाहरू
+        </div>
+        <div className="fs-2 fw-bold text-white mb-2" data-aos="fade-left">हाम्रा उत्पादनहरू</div>
+        <div style={{ color: '#D1E7DD', fontSize: '1rem', maxWidth: '600px' }} data-aos="fade-left">
+          तपाईंको आवश्यकता अनुसार भरपर्दो बचत र सरल कर्जा योजनाहरू
+        </div>
       </div>
 
       {/* Scrollable or Centered Cards */}
       <div
         style={{
-          marginTop: '-100px',
+          marginTop: '-90px',
           zIndex: 2,
           position: 'relative',
         }}
@@ -74,17 +93,16 @@ function OurProducts() {
             className={`horizontal-scroll px-3 ${shouldAutoScroll ? 'overflow-auto' : ''}`}
           >
             <div className={`d-flex gap-4 ${shouldAutoScroll ? 'flex-nowrap' : 'justify-content-center flex-wrap'}`} >
-              {Products.map((product, i) => (
-               
-                  <Details
-                    title={product.productTitle}
-                    subtitle={product.productSubTitle}
-                    headerImage={product.productTitleImage}
-                    description={product.productDescription}
-                    id={product.productId}
-                    others={product.Topics}
-                  />
-               
+              {Products.map((product) => (
+                <Details
+                  key={product.productId}
+                  title={product.productTitle}
+                  subtitle={product.productSubTitle}
+                  headerImage={product.productTitleImage}
+                  description={product.productDescription}
+                  id={product.productId}
+                  others={product.Topics}
+                />
               ))}
             </div>
           </div>

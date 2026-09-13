@@ -1,106 +1,257 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
+import { AuthContext } from "./AuthContext";
 import config from "../Constants/config";
 
 export default function ChangePassword() {
+  const { adminEmail } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [previousPassword, setPreviousPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
-  const handleChangePassword = async () => {
-    if (!email || !previousPassword || !newPassword) {
-      return alert("Please fill in all fields");
+  useEffect(() => {
+    if (adminEmail) {
+      setEmail(adminEmail);
+    }
+  }, [adminEmail]);
+
+  const handleChangePassword = async (e) => {
+    if (e) e.preventDefault();
+    setErrorMessage("");
+    setSuccessMessage("");
+
+    if (!email.trim() || !previousPassword || !newPassword || !confirmPassword) {
+      setErrorMessage("Please fill in all required fields.");
+      return;
+    }
+
+    if (newPassword.length < 6) {
+      setErrorMessage("New password must be at least 6 characters long.");
+      return;
+    }
+
+    if (previousPassword === newPassword) {
+      setErrorMessage("New password must be different from your current password.");
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      setErrorMessage("New password and confirm password do not match.");
+      return;
     }
 
     try {
       setLoading(true);
       const response = await axios.post(`${config.baseUrl}/credential/password/change`, {
-        email,
+        email: email.trim().toLowerCase(),
         previousPassword,
         newPassword,
       });
-      alert(response.data?.message || "Password updated successfully!");
-      setEmail("");
+
+      setSuccessMessage(response.data?.message || "Password updated successfully!");
       setPreviousPassword("");
       setNewPassword("");
+      setConfirmPassword("");
     } catch (err) {
-      alert(err.response?.data?.message || "Error updating password");
+      const msg = err.response?.data?.message || err.message || "Error updating password.";
+      setErrorMessage(msg);
     } finally {
       setLoading(false);
     }
   };
 
+  const inputStyle = {
+    width: "100%",
+    padding: "10px 14px",
+    borderRadius: "6px",
+    border: "1px solid #ced4da",
+    fontSize: "0.95rem",
+    outline: "none",
+    backgroundColor: "#fff",
+    color: "#333",
+  };
+
+  const wrapperStyle = {
+    position: "relative",
+    marginBottom: "16px",
+  };
+
+  const toggleBtnStyle = {
+    position: "absolute",
+    right: "12px",
+    top: "50%",
+    transform: "translateY(-50%)",
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    fontSize: "1.1rem",
+    padding: 0,
+    zIndex: 2,
+  };
+
+  const labelStyle = {
+    display: "block",
+    marginBottom: "6px",
+    fontWeight: "500",
+    color: "#002B5B",
+    fontSize: "0.9rem",
+  };
+
   return (
-    <div
-      style={{
-        maxWidth: "400px",
-        margin: "40px auto",
-        padding: "20px",
-        border: "1px solid #ccc",
-        borderRadius: "8px",
-        fontFamily: "Arial, sans-serif",
-      }}
-    >
-      <h3>Change Password</h3>
+    <div style={{ maxWidth: "480px", margin: "0 auto", padding: "10px 0" }}>
+      {errorMessage && (
+        <div
+          style={{
+            backgroundColor: "#f8d7da",
+            color: "#721c24",
+            border: "1px solid #f5c6cb",
+            borderRadius: "6px",
+            padding: "10px 14px",
+            marginBottom: "16px",
+            fontSize: "0.9rem",
+          }}
+        >
+          {errorMessage}
+        </div>
+      )}
 
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-        style={{
-          width: "100%",
-          padding: "10px",
-          marginBottom: "10px",
-          borderRadius: "4px",
-          border: "1px solid #ccc",
-        }}
-      />
+      {successMessage && (
+        <div
+          style={{
+            backgroundColor: "#d4edda",
+            color: "#155724",
+            border: "1px solid #c3e6cb",
+            borderRadius: "6px",
+            padding: "10px 14px",
+            marginBottom: "16px",
+            fontSize: "0.9rem",
+          }}
+        >
+          {successMessage}
+        </div>
+      )}
 
-      <input
-        type="password"
-        value={previousPassword}
-        onChange={(e) => setPreviousPassword(e.target.value)}
-        placeholder="Old Password"
-        style={{
-          width: "100%",
-          padding: "10px",
-          marginBottom: "10px",
-          borderRadius: "4px",
-          border: "1px solid #ccc",
-        }}
-      />
+      <form onSubmit={handleChangePassword}>
+        <div style={{ marginBottom: "16px" }}>
+          <label style={labelStyle}>Admin Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              if (errorMessage) setErrorMessage("");
+            }}
+            placeholder="admin@example.com"
+            required
+            disabled={loading}
+            style={inputStyle}
+          />
+        </div>
 
-      <input
-        type="password"
-        value={newPassword}
-        onChange={(e) => setNewPassword(e.target.value)}
-        placeholder="New Password"
-        style={{
-          width: "100%",
-          padding: "10px",
-          marginBottom: "10px",
-          borderRadius: "4px",
-          border: "1px solid #ccc",
-        }}
-      />
+        <div style={{ marginBottom: "16px" }}>
+          <label style={labelStyle}>Current Password</label>
+          <div style={wrapperStyle}>
+            <input
+              type={showOldPassword ? "text" : "password"}
+              value={previousPassword}
+              onChange={(e) => {
+                setPreviousPassword(e.target.value);
+                if (errorMessage) setErrorMessage("");
+              }}
+              placeholder="Enter current password"
+              required
+              disabled={loading}
+              style={{ ...inputStyle, paddingRight: "44px", marginBottom: 0 }}
+            />
+            <button
+              type="button"
+              onClick={() => setShowOldPassword(!showOldPassword)}
+              style={toggleBtnStyle}
+              aria-label="Toggle current password"
+            >
+              {showOldPassword ? "🙈" : "👁️"}
+            </button>
+          </div>
+        </div>
 
-      <button
-        onClick={handleChangePassword}
-        disabled={loading}
-        style={{
-          width: "100%",
-          padding: "10px",
-          backgroundColor: loading ? "#6c757d" : "#007bff",
-          color: "#fff",
-          border: "none",
-          borderRadius: "4px",
-          cursor: loading ? "not-allowed" : "pointer",
-        }}
-      >
-        {loading ? "Updating..." : "Update Password"}
-      </button>
+        <div style={{ marginBottom: "16px" }}>
+          <label style={labelStyle}>New Password</label>
+          <div style={wrapperStyle}>
+            <input
+              type={showNewPassword ? "text" : "password"}
+              value={newPassword}
+              onChange={(e) => {
+                setNewPassword(e.target.value);
+                if (errorMessage) setErrorMessage("");
+              }}
+              placeholder="Minimum 6 characters"
+              required
+              disabled={loading}
+              style={{ ...inputStyle, paddingRight: "44px", marginBottom: 0 }}
+            />
+            <button
+              type="button"
+              onClick={() => setShowNewPassword(!showNewPassword)}
+              style={toggleBtnStyle}
+              aria-label="Toggle new password"
+            >
+              {showNewPassword ? "🙈" : "👁️"}
+            </button>
+          </div>
+        </div>
+
+        <div style={{ marginBottom: "20px" }}>
+          <label style={labelStyle}>Confirm New Password</label>
+          <div style={wrapperStyle}>
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              value={confirmPassword}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+                if (errorMessage) setErrorMessage("");
+              }}
+              placeholder="Confirm your new password"
+              required
+              disabled={loading}
+              style={{ ...inputStyle, paddingRight: "44px", marginBottom: 0 }}
+            />
+            <button
+              type="button"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              style={toggleBtnStyle}
+              aria-label="Toggle confirm password"
+            >
+              {showConfirmPassword ? "🙈" : "👁️"}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          disabled={loading}
+          style={{
+            width: "100%",
+            padding: "12px",
+            backgroundColor: loading ? "#6c757d" : "#28A745",
+            color: "#fff",
+            border: "none",
+            borderRadius: "6px",
+            fontWeight: "500",
+            fontSize: "1rem",
+            cursor: loading ? "not-allowed" : "pointer",
+            transition: "background-color 0.2s ease",
+          }}
+        >
+          {loading ? "Updating Password..." : "Update Password"}
+        </button>
+      </form>
     </div>
   );
 }

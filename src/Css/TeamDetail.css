@@ -1,36 +1,80 @@
-.team-container {
+/* ============================================
+   Team Detail — Public List Container
+   ============================================ */
+
+.team-list-container {
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(0, 43, 91, 0.07);
+}
+
+/* Header row */
+.team-list-header {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  padding: 10px;
+  align-items: center;
+  background: #002B5B;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
+  padding: 0;
 }
 
-/* Flexible wrapper to allow 2 or more per row */
-.individual-member {
-  flex: 1 1 160px; /* Allows as many as possible depending on screen width */
-  max-width: 220px; /* Optional: Prevents cards from getting too wide */
-  min-width: 140px; /* Ensures minimum readable size */
+.team-list-header-sn {
+  flex: 0 0 48px;
+  text-align: center;
+  padding: 12px 8px;
+  border-right: 1px solid rgba(255,255,255,0.15);
 }
 
-/* Responsive tweaks for smaller screens */
-@media (max-width: 768px) {
-  .team-container {
-    gap: 10px;
-    padding: 8px;
+.team-list-header-name {
+  flex: 1;
+  padding: 12px 16px;
+  border-right: 1px solid rgba(255,255,255,0.15);
+}
+
+.team-list-header-position {
+  flex: 0 0 180px;
+  padding: 12px 16px;
+  border-right: 1px solid rgba(255,255,255,0.15);
+}
+
+.team-list-header-contact {
+  flex: 0 0 160px;
+  text-align: center;
+  padding: 12px 10px;
+}
+
+/* Alternating row tint */
+.team-list-container > .member-list-row:nth-child(even) {
+  background: #f8fdf9;
+}
+
+/* Loading / empty states */
+.team-loading {
+  text-align: center;
+  padding: 32px;
+  color: #6c757d;
+  font-size: 0.95rem;
+}
+
+.team-empty {
+  text-align: center;
+  padding: 32px;
+  color: #adb5bd;
+  font-size: 0.95rem;
+}
+
+/* Mobile: hide position column header, reduce serial */
+@media (max-width: 576px) {
+  .team-list-header-position {
+    display: none;
   }
 
-  .individual-member {
-    flex: 1 1 45%;
-    max-width: 48%;
-    min-width: 140px;
-  }
-}
-
-/* Optional: For very narrow devices, fallback to full width */
-@media (max-width: 350px) {
-  .individual-member {
-    flex: 1 1 100%;
-    max-width: 100%;
+  .team-list-header-contact {
+    flex: 0 0 110px;
+    font-size: 0.78rem;
   }
 }

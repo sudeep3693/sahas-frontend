@@ -1,50 +1,73 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, ListGroup } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import TeamDetail from "./TeamDetail";
 import config from "../Constants/config";
 import axios from "axios";
 
+// Map DB category values → Nepali labels
+const CATEGORY_LABELS = {
+  'board-of-directors':          'संचालक समिति',
+  'account-committee':           'लेखा साखा',
+  'account-comittee':            'लेखा साखा',           // backward-compat typo
+  'risk-management-committee':   'बिपद् व्यवस्थापन उप-समिति',
+  'loan-committee':              'ऋण उप-समिति',
+  'education-committee':         'शिक्षा उप-समिति',
+  'advisory-committee':          'सल्लाहकार समिति',
+  'employees':                   'कर्मचारी',
+};
+
+function getCategoryLabel(slug) {
+  return CATEGORY_LABELS[slug] ||
+    slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
 function TeamDetailContainer() {
-  const [headings, setHeadings] = useState([]);
-  const [selectedType, setSelectedType] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading]       = useState(true);
 
   useEffect(() => {
     axios.get(`${config.baseUrl}/teamDetail/categories`)
-      .then(res => {
-        setHeadings(res.data);
-        if (res.data.length > 0) {
-          setSelectedType(res.data[0]); // default selection
-        }
-      })
-      .catch(err => console.error("Failed to load headings", err));
+      .then(res => setCategories(res.data))
+      .catch(err => console.error("Failed to load categories", err))
+      .finally(() => setLoading(false));
   }, []);
 
-  return (
-    <Container fluid className="py-4">
-      <Row>
-        {/* Right column (on small screens comes first) */}
-        <Col md={4} sm={12} className="mb-4">
-          <h5 className="mb-3">Select Category</h5>
-          <ListGroup>
-            {headings.map((heading, idx) => (
-              <ListGroup.Item
-                key={idx}
-                action
-                active={heading === selectedType}
-                onClick={() => setSelectedType(heading)}
-                style={{ textTransform: 'capitalize' }}
-              >
-                {heading}
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
-        </Col>
+  if (loading) {
+    return (
+      <div className="text-center py-5">
+        <Spinner animation="border" variant="success" />
+      </div>
+    );
+  }
 
-        {/* Left column */}
-        <Col md={8} sm={12}>
-          <TeamDetail type={selectedType} />
-        </Col>
-      </Row>
+  if (categories.length === 0) {
+    return (
+      <p className="text-center text-muted py-5">
+        No team information available yet.
+      </p>
+    );
+  }
+
+  return (
+    <Container className="py-4">
+      {categories.map((cat, idx) => (
+        <div key={cat} className="mb-5">
+          {/* Section heading */}
+          <h5
+            className="mb-3 fw-bold"
+            style={{
+              color: '#002B5B',
+              borderLeft: '4px solid #28A745',
+              paddingLeft: '10px',
+            }}
+          >
+            {getCategoryLabel(cat)}
+          </h5>
+
+          {/* Member list table */}
+          <TeamDetail type={cat} />
+        </div>
+      ))}
     </Container>
   );
 }

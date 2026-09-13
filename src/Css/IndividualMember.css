@@ -1,74 +1,94 @@
-/* components/Css/IndividualMember.css */
+/* ============================================
+   Individual Member — List Row Style
+   ============================================ */
 
-.member-card {
-  width: 100%;
-  max-width: 250px;
-  min-height: 300px;
+.member-list-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: #ffffff;
+  border-bottom: 1px solid #e9ecef;
+  transition: background 0.15s ease;
+}
+
+.member-list-row:last-child {
+  border-bottom: none;
+}
+
+.member-list-row:hover {
+  background: #f0faf3;
+}
+
+/* Serial number cell */
+.member-serial {
+  flex: 0 0 48px;
   text-align: center;
-  background: #E6F4EA;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: 1px solid #F5F5F5;
-  padding-bottom: 10px; /* Optional for balance */
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #6c757d;
+  padding: 14px 8px;
+  border-right: 1px solid #e9ecef;
 }
 
-
-.member-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3); /* Green accent shadow */
+/* Name + position block */
+.member-list-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px;
+  border-right: 1px solid #e9ecef;
+  gap: 2px;
 }
 
-.member-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-bottom: 2px solid #28A745; /* Primary Green border */
+.member-list-name {
+  font-weight: 600;
+  font-size: 0.97rem;
+  color: #002B5B;
 }
 
-.member-info {
-  padding: 10px;
+.member-list-position {
+  font-size: 0.85rem;
+  color: #28A745;
+  font-weight: 500;
 }
 
-.member-name {
-  font-weight: 700;
-  font-size: 1 rem;
-  color: #002B5B; /* Navy Blue for header text */
-  margin-bottom: 4px;
+/* Contact cell */
+.member-list-contact {
+  flex: 0 0 160px;
+  text-align: center;
+  padding: 12px 10px;
+  font-size: 0.88rem;
+  color: #28A745;
+  text-decoration: none;
+  font-weight: 500;
 }
 
-.member-position {
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: #00152b; /* Deep Navy for secondary text */
-}
-/* Responsive wrapper to control card width */
-.individual-member {
-  flex: 1 1 calc(50% - 12px); /* Minimum 2 per row on all screens */
-  max-width: calc(50% - 12px);
+.member-list-contact:hover {
+  color: #1a7a30;
+  text-decoration: underline;
 }
 
-/* On medium screens, allow 3 per row */
-@media (min-width: 768px) {
-  .individual-member {
-    flex: 1 1 calc(33.333% - 12px);
-    max-width: calc(33.333% - 12px);
+.member-list-contact-empty {
+  flex: 0 0 160px;
+  text-align: center;
+  padding: 12px 10px;
+  color: #adb5bd;
+  font-size: 0.9rem;
+}
+
+/* Mobile: hide contact flex width, stack on narrow */
+@media (max-width: 576px) {
+  .member-list-contact,
+  .member-list-contact-empty {
+    flex: 0 0 110px;
+    font-size: 0.8rem;
   }
-}
 
-/* On large screens, allow 4+ per row */
-@media (min-width: 992px) {
-  .individual-member {
-    flex: 1 1 calc(25% - 12px);
-    max-width: calc(25% - 12px);
+  .member-list-name {
+    font-size: 0.9rem;
   }
-}
 
-/* On extra-large screens */
-@media (min-width: 1200px) {
-  .individual-member {
-    flex: 1 1 calc(20% - 12px);
-    max-width: calc(20% - 12px);
+  .member-list-position {
+    font-size: 0.78rem;
   }
 }

@@ -13,7 +13,6 @@ import OurGallery from '../Component/OurGallery';
 import SecondaryNavbar from '../Component/SecondaryNavBar';
 import TeamDetailContainer from '../Component/TeamDetailContainer';
 import NewsDetailPage from '../Component/NewsDetailPage';
-import OtpComponent from '../Component/OtpComponent';
 
 function UserRoutes() {
   const productsRef = useRef(null);
@@ -44,7 +43,6 @@ function UserRoutes() {
           <Route path = "reports" element = {<Downloads type="reports"/>}/>
           <Route path = "gallery" element={<OurGallery/>}/>
           <Route path = "team" element={<TeamDetailContainer/>}/> 
-          <Route path = "forgetPassword" element={<OtpComponent/>}/>
         </Route>
       </Routes>
     </>

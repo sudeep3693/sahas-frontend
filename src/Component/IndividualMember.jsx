@@ -1,25 +1,23 @@
-// components/IndividualMember.js
 import React from 'react';
 import '../Css/IndividualMember.css';
-import config from '../Constants/config';
 
-function IndividualMember({ name, image, position }) {
+function IndividualMember({ name, position, contactNumber, serialNo }) {
   return (
-    <div className="individual-member">
-      <div className="member-card">
-        <img
-          src={`${image}`}
-          alt={name}
-          className="member-image"
-        />
-        <div className="member-info">
-          <div className="member-name">{name}</div>
-          <div className="member-position">{position}</div>
-        </div>
+    <div className="member-list-row">
+      <span className="member-serial">{serialNo}</span>
+      <div className="member-list-info">
+        <span className="member-list-name">{name}</span>
+        <span className="member-list-position">{position}</span>
       </div>
+      {contactNumber ? (
+        <a href={`tel:${contactNumber}`} className="member-list-contact">
+          📞 {contactNumber}
+        </a>
+      ) : (
+        <span className="member-list-contact-empty">—</span>
+      )}
     </div>
   );
 }
-
 
 export default IndividualMember;
