@@ -1,5 +1,7 @@
+const configuredBaseUrl = process.env.REACT_APP_API_URL || 'https://backend.sahas.coop.np';
+
 const config = {
-  baseUrl: process.env.REACT_APP_API_BASE_URL || "http://localhost:3001",
+  baseUrl: configuredBaseUrl.replace(/\/$/, ''),
 };
 
-export default config;
+export default config;
