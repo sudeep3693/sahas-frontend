@@ -1,7 +1,4 @@
-import config from '../Constants/config';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import AOS from 'aos';
 import 'aos/dist/aos.css'; // This is required
 
 function News({ imageName, heading, date, description, id }) {

@@ -1,6 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import Partner from './Payment';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import esewa from '../Images/PaymentPartner/esewa.png';
 import khalti from '../Images/PaymentPartner/khalti.jpeg';
 import '../Css/App.css';
@@ -8,7 +8,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; // This is required
 
 function PaymentPartner() {
-  const [partner, setPartner] = useState([esewa, khalti]);
+  const partner = [esewa, khalti];
  useEffect(() => {
     AOS.init({
       duration: 500,  // animation duration in ms

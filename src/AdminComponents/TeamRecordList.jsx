@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Table, Spinner, Button, Badge } from 'react-bootstrap';
 import axios from 'axios';
 import config from '../Constants/config';
@@ -8,7 +8,7 @@ const TeamRecordList = ({ selectedCategory, refreshKey }) => {
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState(null);
 
-  const fetchRecords = async () => {
+  const fetchRecords = useCallback(async () => {
     setLoading(true);
     try {
       const response = await axios.get(`${config.baseUrl}/teamDetail/category/${selectedCategory}`);
@@ -18,7 +18,7 @@ const TeamRecordList = ({ selectedCategory, refreshKey }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedCategory]);
 
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this member?')) return;
@@ -36,7 +36,7 @@ const TeamRecordList = ({ selectedCategory, refreshKey }) => {
 
   useEffect(() => {
     fetchRecords();
-  }, [selectedCategory, refreshKey]);
+  }, [fetchRecords, refreshKey]);
 
   const categoryLabel = selectedCategory
     .replace(/-/g, ' ')
