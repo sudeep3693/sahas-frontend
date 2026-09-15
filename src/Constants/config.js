@@ -1,9 +1,5 @@
 const config = {
-
-    //baseUrl :"https://backend.sahas.coop.np",
-    baseUrl:"https://sahas-backend.onrender.com",
-    // baseUrl: "http://localhost:3001",
-    
-
+  baseUrl: process.env.REACT_APP_API_BASE_URL || "http://localhost:3001",
 };
-export default config;
+
+export default config;
