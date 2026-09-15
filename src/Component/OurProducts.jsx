@@ -19,17 +19,13 @@ function OurProducts() {
 
     const card = scrollContainer.querySelector('.product-card');
     const cardWidth = card ? card.offsetWidth + 16 : 240;
-    let scrollIndex = 0;
-
     const scrollStep = () => {
       if (!scrollContainer) return;
 
       if (scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 1) {
-        scrollIndex = 0;
         scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
         scrollContainer.scrollBy({ left: cardWidth, behavior: 'smooth' });
-        scrollIndex += 1;
       }
     };
 

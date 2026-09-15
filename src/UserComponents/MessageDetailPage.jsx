@@ -22,22 +22,22 @@ function MessageDetailPage() {
   
 
   useEffect(() => {
-    fetchMessage();
-  }, []);
-
-  const fetchMessage = async () => {
-    try {
-      const res = await axios.get(`${config.baseUrl}/messages/all`);
-      const found = res.data.find((msg) => msg._id === id);
-      if (found) {
-        setMessage(found);
+    const fetchMessage = async () => {
+      try {
+        const res = await axios.get(`${config.baseUrl}/messages/all`);
+        const found = res.data.find((msg) => msg._id === id);
+        if (found) {
+          setMessage(found);
+        }
+      } catch (error) {
+        console.error("Failed to fetch message:", error);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      console.error("Failed to fetch message:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
+
+    fetchMessage();
+  }, [id]);
 
   if (loading) {
     return <p className="text-center mt-5">Loading message...</p>;

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import '../Css/LoginPage.css';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../Authentication/AuthContext';
 import config from '../Constants/config';
@@ -17,7 +17,6 @@ export default function ChangePasswordPage() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const navigate = useNavigate();
 
   const handleChangePassword = async (e) => {
     e.preventDefault();

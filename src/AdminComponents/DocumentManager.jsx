@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import config from "../Constants/config";
 import { FaFilePdf, FaTimes, FaDownload } from "react-icons/fa";
@@ -13,11 +13,7 @@ function DocumentManager() {
   const [documents, setDocuments] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    fetchDocuments();
-  }, [category]);
-
-  const fetchDocuments = async () => {
+  const fetchDocuments = useCallback(async () => {
     try {
       const res = await axios.get(`${baseURL}/category/${category}`);
       setDocuments(res.data);
@@ -25,7 +21,11 @@ function DocumentManager() {
       console.error("Error fetching documents:", err);
       alert("Failed to load documents.");
     }
-  };
+  }, [category]);
+
+  useEffect(() => {
+    fetchDocuments();
+  }, [fetchDocuments]);
 
   const handleUpload = async (e) => {
     e.preventDefault();
