@@ -16,7 +16,7 @@ function Header() {
   return (
     <>
       <div className={`header-wrapper d-none d-md-block ${visible ? "show" : "hide"}`}>
-        <Container fluid className=" text-white py-2 position-relative" style={{backgroundColor:'#002B5B'}}>
+        <Container fluid className="site-header text-white py-2 position-relative">
           <Row className="justify-content-between align-items-center">
             <Col md={6}>
               <ContactIcons

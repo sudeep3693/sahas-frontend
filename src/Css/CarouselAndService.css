@@ -1,12 +1,49 @@
 
-/* CarouselAndService.css */
+.homepage-hero {
+  max-width: 1320px;
+}
+
+.hero-media-frame,
+.services-frame {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.hero-media-frame .carousel,
+.hero-media-frame .carousel-inner,
+.hero-media-frame .carousel-item {
+  height: 100%;
+}
+
+.hero-media-frame img {
+  min-height: 390px;
+  object-fit: cover;
+}
+
+.services-frame {
+  background: var(--mint);
+}
+
 .vision-box {
-  background: linear-gradient(135deg, #e6f4ea, #f5f5f5);
-  color: #001f3f;
-  padding: 1.25rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  min-height: 160px;
+  background: var(--forest);
+  color: rgba(255, 255, 255, 0.82);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   text-align: center;
+}
+
+.vision-box h4 {
+  color: #f3d18a;
+  font-size: 1.1rem;
+}
+
+.vision-box p {
+  font-size: 0.94rem;
 }
 
 /* Responsive Hide on Medium */
@@ -30,6 +67,16 @@
 
 /* Hover effect */
 .service-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 8px 20px rgba(0, 43, 91, 0.3);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 767.98px) {
+  .hero-media-frame img {
+    min-height: 240px;
+  }
+
+  .homepage-hero {
+    padding-inline: 0.85rem;
+  }
 }

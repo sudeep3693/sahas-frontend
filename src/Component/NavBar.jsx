@@ -1,24 +1,36 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Offcanvas from 'react-bootstrap/Offcanvas';
 import logo from '../Images/headerLogo.png';
 import SocialIcons from '../Component/SocialMedia';
 import ContactIcons from '../Component/HeaderContact';
-import '../Css/App.css';
+import '../Css/Navbar.css';
 import useBasicDetails from '../FetchData/useBasicDetails';
 
 
 function NavBar({ onProductsClick, onContactClick }) {
-  const [showOffcanvas, setShowOffcanvas] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleClose = () => setShowOffcanvas(false);
-  const handleShow = () => setShowOffcanvas(true);
+  const handleClose = () => {
+    setMenuOpen(false);
+    setAboutOpen(false);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') handleClose();
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle('navbar-menu-open', menuOpen);
+    return () => document.body.classList.remove('navbar-menu-open');
+  }, [menuOpen]);
 
   const handleProductsClick = (e) => {
     e.preventDefault();
@@ -94,105 +106,62 @@ function NavBar({ onProductsClick, onContactClick }) {
   if (loading) return null;
   if (error) return <p className="text-danger text-center">Error loading contact details.</p>;
 
+  const isActive = (path) => location.pathname === path;
+
   return (
-    <Navbar expand="md" className={`navbar-main ${showOffcanvas ? 'navbar-dark-green' : ''}`}>
-      <Container fluid className="d-flex justify-content-between align-items-center px-3">
+    <header className="premium-navbar">
+      <div className="premium-navbar__inner">
+        <button type="button" className="premium-navbar__brand" onClick={handleHome} aria-label="Go to home">
+          <img src={logo} alt="Sahas Cooperative Logo" />
+        </button>
 
-        <Container fluid className="d-flex justify-content-between align-items-center px-3">
-          <Navbar.Brand onClick={handleHome} className="d-flex align-items-center ms-lg-5 ms-md-auto">
-            <img
-              src={logo}
-              alt="Sahas Cooperative Logo"
-              className={`img-fluid ${showOffcanvas ? 'logo-large-mobile' : 'logo-default'}`}
-            />
+        <button
+          type="button"
+          className={`premium-navbar__menu-toggle ${menuOpen ? 'is-open' : ''}`}
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-expanded={menuOpen}
+          aria-controls="primary-navigation"
+          aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
 
-          </Navbar.Brand>
-
-          <Navbar.Toggle
-            aria-controls="offcanvasNavbar"
-            className="small-toggle"
-            onClick={handleShow}
-          />
-        </Container>
-
-        <Container fluid className="d-flex justify-content-between align-items-center px-3">
-          <Navbar.Offcanvas
-            id="offcanvasNavbar"
-            aria-labelledby="offcanvasNavbarLabel"
-            placement="end"
-            show={showOffcanvas}
-            onHide={handleClose}
-            className="offcanvas-dark-green"
-          >
-
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title id="offcanvasNavbarLabel">
-                <SocialIcons />
-              </Offcanvas.Title>
-            </Offcanvas.Header>
-
-            <Offcanvas.Body>
-              <Nav className="me-lg-5 ms-auto custom-nav">
-                <NavDropdown
-                  title="About Us"
-                  id="about-dropdown"
-                  className="custom-nav-link about-dropdown-mobile"
-                >
-
-                  <NavDropdown.Item onClick={about} className="custom-dropdown-item">Introduction</NavDropdown.Item>
-                  <NavDropdown.Item onClick={teamDetail} className="custom-dropdown-item">Our Team</NavDropdown.Item>
-                </NavDropdown>
-
-                <Nav.Link
-                  as="button"
-                  onClick={handleProductsClick}
-                  className="custom-nav-link fs-6 custom-button-link"
-                >
-                  Products
-                </Nav.Link>
-
-                <Nav.Link
-                  as="button"
-                  onClick={handleContactClick}
-                  className="custom-nav-link fs-6 custom-button-link"
-                >
-                  Contact Us
-                </Nav.Link>
-
-                <Nav.Link
-                  as="button"
-                  onClick={handleGalleryClick}
-                  className="custom-nav-link fs-6 custom-button-link"
-                >
-                  Our Gallery
-                </Nav.Link>
-
-                <Nav.Link
-                  as="button"
-                  onClick={handleReportClick}
-                  className="custom-nav-link fs-6 custom-button-link"
-                >
-                  Reports
-                </Nav.Link>
-
-
-                <Nav.Link
-                  as="button"
-                  onClick={handleDownloadsClick}
-                  className="custom-nav-link fs-6 custom-button-link"
-                >
-                  Downloads
-                </Nav.Link>
-              </Nav>
-
-              <div className="mt-4 border-top pt-3 d-md-none text-black">
-                <ContactIcons phone={formData.telephone || "N/A"} email={formData.email || "N/A"} />
+        <div className={`premium-navbar__panel ${menuOpen ? 'is-open' : ''}`}>
+          <nav id="primary-navigation" className="premium-navbar__links" aria-label="Primary navigation">
+            <div className={`premium-navbar__dropdown ${aboutOpen ? 'is-open' : ''}`}>
+              <button
+                type="button"
+                className="premium-navbar__link premium-navbar__dropdown-trigger"
+                onClick={() => setAboutOpen((open) => !open)}
+                aria-expanded={aboutOpen}
+              >
+                About Us <span aria-hidden="true">⌄</span>
+              </button>
+              <div className="premium-navbar__dropdown-menu">
+                <button type="button" onClick={about}>Introduction</button>
+                <button type="button" onClick={teamDetail}>Our Team</button>
               </div>
-            </Offcanvas.Body>
-          </Navbar.Offcanvas>
-        </Container>
-      </Container>
-    </Navbar>
+            </div>
+
+            <button type="button" className={`premium-navbar__link ${isActive('/') ? 'is-active' : ''}`} onClick={handleProductsClick}>Products</button>
+            <button type="button" className="premium-navbar__link" onClick={handleContactClick}>Contact Us</button>
+            <button type="button" className={`premium-navbar__link ${isActive('/gallery') ? 'is-active' : ''}`} onClick={handleGalleryClick}>Our Gallery</button>
+            <button type="button" className={`premium-navbar__link ${isActive('/reports') ? 'is-active' : ''}`} onClick={handleReportClick}>Reports</button>
+            <button type="button" className={`premium-navbar__link ${isActive('/downloads') ? 'is-active' : ''}`} onClick={handleDownloadsClick}>Downloads</button>
+          </nav>
+
+          <div className="premium-navbar__utility">
+            <SocialIcons />
+            <div className="premium-navbar__contact">
+              <ContactIcons phone={formData.telephone || 'N/A'} email={formData.email || 'N/A'} />
+            </div>
+          </div>
+        </div>
+      </div>
+      {menuOpen && <button type="button" className="premium-navbar__backdrop" onClick={handleClose} aria-label="Close navigation menu" />}
+    </header>
   );
 }
 

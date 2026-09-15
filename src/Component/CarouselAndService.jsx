@@ -7,11 +7,11 @@ import "../Css/CarouselAndService.css";
 
 function CarouselAndService() {
   return (
-    <Container fluid className="py-4">
+    <Container fluid className="homepage-hero py-3 py-md-4">
       <Row className="g-3 align-items-stretch">
         {/* Carousel Section */}
         <Col xs={12} md={8} className="d-flex">
-          <div className="shadow rounded bg-white flex-fill">
+          <div className="hero-media-frame flex-fill">
             <ImageCarousel />
           </div>
         </Col>
@@ -19,7 +19,7 @@ function CarouselAndService() {
         {/* Services & Vision Section */}
         <Col xs={12} md={4} className="d-flex flex-column">
           {/* Services */}
-          <div className="shadow rounded bg-light p-2 mb-3">
+          <div className="services-frame p-2 mb-3">
             <Services />
           </div>
 

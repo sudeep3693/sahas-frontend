@@ -10,9 +10,9 @@ import {
   BsCreditCard2FrontFill,
   BsBarChartFill,
 } from 'react-icons/bs';
-import axios from "axios";
 import { useEffect, useState } from "react";
 import config from '../Constants/config';
+import { getCached } from '../FetchData/requestCache';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // This is required
 
@@ -34,8 +34,8 @@ function MembersDetail() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${config.baseUrl}/financial/getAll`);
-        const data = res.data[0]; // Adjust if backend returns different format
+        const result = await getCached(`${config.baseUrl}/financial/getAll`);
+        const data = result[0]; // Adjust if backend returns different format
         setUpdatedDate(data.academicYear);
         setFinancialData([
           { label: 'सदस्यहरू', count: data.members, icon: <BsPersonFill size={50} color={color} /> },

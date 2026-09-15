@@ -2,8 +2,8 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import News from './News';
 import config from '../Constants/config';
-import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { getCached } from '../FetchData/requestCache';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // This is required
 
@@ -20,8 +20,7 @@ function NewsNotice() {
   
   const fetchNews = async () => {
     try {
-      const res = await axios.get(`${config.baseUrl}/news/all`);
-      setNewsList(res.data);
+      setNewsList(await getCached(`${config.baseUrl}/news/all`));
     } catch (error) {
       console.error("Failed to fetch news:", error);
     }

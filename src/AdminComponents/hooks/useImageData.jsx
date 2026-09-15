@@ -1,18 +1,20 @@
-import useCarouselImages from '../hooks/useCarouselImage';
-import useGalleryImages from '../hooks/useGallaryImage';
-import useNoticeImages from './useNoticeImage';
+import useFetch from './useFetch';
+import config from '../../Constants/config';
 
 const useImageData = ({ usedIn }) => {
-  const carousel = useCarouselImages();
-  const gallery = useGalleryImages();
-  const notice = useNoticeImages();
+  const endpoints = {
+    carousel: `${config.baseUrl}/images/carousel`,
+    gallery: `${config.baseUrl}/gallery`,
+    notice: `${config.baseUrl}/notice`,
+  };
+  const url = endpoints[usedIn];
+  const result = useFetch(url);
 
-  if (usedIn === 'carousel') return carousel;
-  if (usedIn === 'gallery') return gallery;
-  if (usedIn === 'notice') return notice;
-
-  console.warn(`Unknown usedIn value: ${usedIn}`);
-  return { data: [], setData: () => {}, refetch: () => {}, loading: false, error: null };
+  if (!url) {
+    console.warn(`Unknown usedIn value: ${usedIn}`);
+    return { ...result, data: [], loading: false, error: null };
+  }
+  return result;
 };
 
 export default useImageData;

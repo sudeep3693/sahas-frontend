@@ -5,8 +5,8 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 40px;
-  background-color: #002B5B; /* Dark green */
+  min-height: 48px;
+  background: rgba(11, 43, 36, 0.95);
   color: white;
   display: flex;
   align-items: center;
@@ -14,25 +14,39 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease-in-out;
   animation: fadeDown 0.4s ease-in-out;
-  padding: 0 2rem;
+  padding: 0 1rem;
+  backdrop-filter: blur(14px);
 }
 
 .nav-links {
   display: flex;
-  gap: 30px;
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  gap: 0.3rem;
+  justify-content: flex-end;
 }
 
 .nav-links a {
   color: white;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1.1rem; /* Increased font size */
-  transition: color 0.3s;
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  transition: color 0.3s, background-color 0.3s;
 }
 
 .nav-links a:hover {
-  color: #bbf7d0; /* Light green on hover */
-  text-decoration: underline;
+  color: #f3d18a;
+  background: rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+}
+
+@media (max-width: 767.98px) {
+  .secondary-navbar {
+    display: none;
+  }
 }
 
 @keyframes fadeDown {

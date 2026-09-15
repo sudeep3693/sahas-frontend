@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import useGallaryImage from '../AdminComponents/hooks/useGallaryImage.jsx';
 import '../Css/OurGallery.css';
 import AOS from 'aos';
+import OptimizedImage from './OptimizedImage';
 import 'aos/dist/aos.css';
 
 const OurGallery = () => {
@@ -72,10 +73,11 @@ const OurGallery = () => {
       <div className="gallery">
         {images && images.length > 0 ? (
           images.map((image, index) => (
-            <img
+            <OptimizedImage
               key={index}
               src={image.url}
               alt={`gallery-img-${index}`}
+              width={800}
               onClick={() => openModal(index)}
               className="gallery-image"
             />
@@ -97,9 +99,11 @@ const OurGallery = () => {
               &times;
             </button>
 
-            <img
+            <OptimizedImage
               src={images[selectedIndex].url}
               alt={`modal-img-${selectedIndex}`}
+              width={1400}
+              loading="eager"
               className="modal-image"
               data-aos="fade-up"
             />

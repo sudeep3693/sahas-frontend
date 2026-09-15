@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import config from '../Constants/config';
-import axios from 'axios';
+import { getCached } from '../FetchData/requestCache';
 import { Container, Row, Col } from 'react-bootstrap';
 import logo from "../Images/logoOnly.png";
 import AOS from 'aos';
@@ -20,8 +20,8 @@ function NewsDetailPage() {
   useEffect(() => {
     const fetchSingleNews = async () => {
       try {
-        const res = await axios.get(`${config.baseUrl}/news/all`);
-        const found = res.data.find((item) => item.id === id);
+        const newsList = await getCached(`${config.baseUrl}/news/all`);
+        const found = newsList.find((item) => item.id === id);
         setNews(found);
       } catch (error) {
         console.error('Error fetching news detail:', error);

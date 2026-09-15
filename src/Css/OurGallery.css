@@ -1,25 +1,25 @@
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 10px;
+  gap: 0.8rem;
   justify-items: center;
-  padding: 1rem;
-  background-color: #E6F4EA; /* Soft Green BG - main background */
+  padding: clamp(1rem, 3vw, 2rem);
+  background: var(--mint);
 }
 
 .gallery img {
   object-fit: cover;
-  height: 100px;
+  height: clamp(110px, 14vw, 190px);
   width: 100%;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border: 1px solid #F5F5F5; /* Light Gray border */
+  border: 1px solid rgba(255, 255, 255, 0.7);
 }
 
 .gallery img:hover {
   transform: scale(1.03);
-  box-shadow: 0 0 8px 2px #FFA500; /* Light Orange accent shadow */
+  box-shadow: 0 10px 24px rgba(16, 35, 29, 0.18);
 }
 
 /* Modal Styles */

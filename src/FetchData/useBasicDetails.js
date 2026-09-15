@@ -1,7 +1,7 @@
 // src/hooks/useBasicDetails.js
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import config from '../Constants/config';
+import { getCached } from './requestCache';
 
 function useBasicDetails() {
   const [data, setData] = useState(null);
@@ -11,8 +11,8 @@ function useBasicDetails() {
   useEffect(() => {
     const fetchBasicDetails = async () => {
       try {
-        const res = await axios.get(`${config.baseUrl}/api/getBasicDetails`);
-        setData(res.data[0] || {});
+        const result = await getCached(`${config.baseUrl}/api/getBasicDetails`);
+        setData(result[0] || {});
       } catch (err) {
         setError(err);
         console.error("Error fetching basic details:", err);

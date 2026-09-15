@@ -2,8 +2,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import MessageBox from "./MessageBox";
 import { useState, useEffect } from "react";
 import config from "../Constants/config";
-import axios from 'axios';
 import AOS from 'aos';
+import { getCached } from '../FetchData/requestCache';
 import 'aos/dist/aos.css'; // This is required
 
 function MessageContainer() {
@@ -22,8 +22,7 @@ function MessageContainer() {
 
   const fetchMessages = async () => {
     try {
-      const res = await axios.get(`${config.baseUrl}/messages/all`);
-      setMessages(res.data);
+      setMessages(await getCached(`${config.baseUrl}/messages/all`));
     } catch (error) {
       console.error('Error fetching messages:', error);
     }

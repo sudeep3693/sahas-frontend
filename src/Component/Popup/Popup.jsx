@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../Css/Popup.css";
 import useNoticeImage from "../../AdminComponents/hooks/useNoticeImage";
-import { Container } from "react-bootstrap";
+import OptimizedImage from '../OptimizedImage';
 
 const Popup = ({ onClose }) => {
   const { data: images, loading, error } = useNoticeImage();
@@ -19,55 +19,35 @@ const Popup = ({ onClose }) => {
 
   const handleClose = () => {
     if (currentIndex < images.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    } else {
-      onClose();
+      setCurrentIndex((index) => index + 1);
+      return;
     }
+    onClose();
   };
 
   return (
-    <Container fluid className="popup-overlay">
-      <div
-        className="popup-image-container"
-        style={{
-          position: "relative",
-          width: "800px",
-          height: "700px",
-          margin: "0 auto",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "#f8f9fa",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-          borderRadius: "10px",
-        }}
-      >
-        <span
+    <div className="popup-overlay" role="dialog" aria-modal="true" aria-label="Latest notices">
+      <div className="popup-image-container">
+        <button
+          type="button"
           className="close-btn"
           onClick={handleClose}
-          style={{
-            position: "absolute",
-            top: "20px",
-            right: "15px",
-            fontSize: "30px",
-            cursor: "pointer",
-            zIndex: 10,
-          }}
+          aria-label={currentIndex < images.length - 1 ? 'Show next notice' : 'Close notices'}
         >
-          &times;
-        </span>
+          <span aria-hidden="true">&times;</span>
+        </button>
 
-        <img
-          src={images[currentIndex]?.url}   // ✅ Fixed: Use actual image URL
-          alt={`Notice ${currentIndex + 1}`}
-          style={{
-            maxWidth: "100%",
-            maxHeight: "100%",
-            objectFit: "contain",
-          }}
-        />
+        <div className="popup-image-frame">
+          <OptimizedImage
+            src={images[currentIndex]?.url}
+            alt={`Notice ${currentIndex + 1} of ${images.length}`}
+            width={1000}
+            loading="eager"
+          />
+        </div>
+
       </div>
-    </Container>
+    </div>
   );
 };
 

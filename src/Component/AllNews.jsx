@@ -1,16 +1,15 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import News from './News';
 import config from '../Constants/config';
+import { getCached } from '../FetchData/requestCache';
 
 function AllNews() {
   const [newsList, setNewsList] = useState([]);
 
   const fetchNews = async () => {
     try {
-      const res = await axios.get(`${config.baseUrl}/news/all`);
-      setNewsList(res.data);
+      setNewsList(await getCached(`${config.baseUrl}/news/all`));
     } catch (error) {
       console.error("Failed to fetch news:", error);
     }

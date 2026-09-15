@@ -1,6 +1,7 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import useCarouselImages from '../AdminComponents/hooks/useCarouselImage';
+import OptimizedImage from './OptimizedImage';
 import '../Css/CarouselCss.css';
 
 function ImageCarousel() {
@@ -13,10 +14,12 @@ function ImageCarousel() {
     <Carousel>
       {images.map((imageObj, index) => (
         <Carousel.Item key={index}>
-          <img
+          <OptimizedImage
             className="d-block w-100"
             src={imageObj.url}   // ✅ Fixed here: use imageObj.url
             alt={`Carousel image ${index + 1}`}
+            width={1400}
+            loading={index === 0 ? 'eager' : 'lazy'}
             style={{ aspectRatio: '4 / 3', objectFit: 'cover' }}
           />
         </Carousel.Item>
