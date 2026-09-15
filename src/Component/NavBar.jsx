@@ -115,20 +115,37 @@ function NavBar({ onProductsClick, onContactClick }) {
           <img src={logo} alt="Sahas Cooperative Logo" />
         </button>
 
-        <button
-          type="button"
-          className={`premium-navbar__menu-toggle ${menuOpen ? 'is-open' : ''}`}
-          onClick={() => setMenuOpen((open) => !open)}
-          aria-expanded={menuOpen}
-          aria-controls="primary-navigation"
-          aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+        {!menuOpen && (
+          <button
+            type="button"
+            className="premium-navbar__menu-toggle"
+            onClick={() => setMenuOpen(true)}
+            aria-expanded="false"
+            aria-controls="primary-navigation"
+            aria-label="Open navigation menu"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        )}
 
         <div className={`premium-navbar__panel ${menuOpen ? 'is-open' : ''}`}>
+          {menuOpen && (
+            <button
+              type="button"
+              className="premium-navbar__menu-toggle is-open"
+              onClick={handleClose}
+              aria-expanded="true"
+              aria-controls="primary-navigation"
+              aria-label="Close navigation menu"
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+          )}
+
           <nav id="primary-navigation" className="premium-navbar__links" aria-label="Primary navigation">
             <div className={`premium-navbar__dropdown ${aboutOpen ? 'is-open' : ''}`}>
               <button
@@ -154,9 +171,10 @@ function NavBar({ onProductsClick, onContactClick }) {
 
           <div className="premium-navbar__utility">
             <SocialIcons />
-            <div className="premium-navbar__contact">
-              <ContactIcons phone={formData.telephone || 'N/A'} email={formData.email || 'N/A'} />
-            </div>
+          </div>
+
+          <div className="premium-navbar__contact">
+            <ContactIcons phone={formData.telephone || 'N/A'} email={formData.email || 'N/A'} />
           </div>
         </div>
       </div>
