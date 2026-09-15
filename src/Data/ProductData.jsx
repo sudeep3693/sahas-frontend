@@ -6,7 +6,6 @@ import monthlySaving from "../Images/Products/Deposits/monthlySaving.png";
 import womenSaving from "../Images/Products/Deposits/womenSaving.png";
 import childSaving from "../Images/Products/Deposits/childSaving.png";
 import festivalSaving from "../Images/Products/Deposits/festivalSaving.png";
-import goldenSaving from "../Images/Products/Deposits/goldenSaving.png";
 import loanSaving from "../Images/Products/Deposits/loanSaving.png";
 
 import loanLogo from "../Images/Products/Loans/loanLogo.png";

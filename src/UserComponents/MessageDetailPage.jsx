@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import MessageBox from "../Component/MessageBox";
 import config from "../Constants/config";
 import axios from "axios";
@@ -21,11 +21,7 @@ function MessageDetailPage() {
     }, []);
   
 
-  useEffect(() => {
-    fetchMessage();
-  }, []);
-
-  const fetchMessage = async () => {
+  const fetchMessage = useCallback(async () => {
     try {
       const res = await axios.get(`${config.baseUrl}/messages/all`);
       const found = res.data.find((msg) => msg._id === id);
@@ -37,7 +33,11 @@ function MessageDetailPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    fetchMessage();
+  }, [fetchMessage]);
 
   if (loading) {
     return <p className="text-center mt-5">Loading message...</p>;

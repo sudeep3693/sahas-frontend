@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
 import useGallaryImage from '../AdminComponents/hooks/useGallaryImage.jsx';
 import '../Css/OurGallery.css';
 import AOS from 'aos';
@@ -14,15 +14,19 @@ const OurGallery = () => {
     setSelectedIndex(index);
   };
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setSelectedIndex(null);
-  };
+  }, []);
 
-  const showPrev = () =>
-    setSelectedIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
+  const showPrev = useCallback(
+    () => setSelectedIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1)),
+    [images.length]
+  );
 
-  const showNext = () =>
-    setSelectedIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
+  const showNext = useCallback(
+    () => setSelectedIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0)),
+    [images.length]
+  );
 
   // Keyboard navigation
   useEffect(() => {
@@ -35,7 +39,7 @@ const OurGallery = () => {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedIndex, images.length]);
+  }, [selectedIndex, showPrev, showNext, closeModal]);
 
   // Handle browser back button
   useEffect(() => {
@@ -45,7 +49,7 @@ const OurGallery = () => {
       window.addEventListener("popstate", handlePopState);
       return () => window.removeEventListener("popstate", handlePopState);
     }
-  }, [selectedIndex]);
+  }, [selectedIndex, closeModal]);
 
   // Initialize AOS
   useEffect(() => {
